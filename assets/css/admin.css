@@ -292,8 +292,12 @@
   transition: background-color var(--transition-fast),
               color var(--transition-fast);
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
+  min-width: 68px;
+  margin: 2px 0 2px 4px !important;
 }
 
 .btn-edit {
