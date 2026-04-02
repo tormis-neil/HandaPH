@@ -42,11 +42,22 @@ The `pages/` directory holds the most important tools of the website.
 * **Why it's there:** We want HandaPH to grow based on real feedback from real Filipino families.
 * **How it works:** It displays an interactive form where users can click stars and type their thoughts.
 
----
+### 🔒 Behind the Scenes: The `admin/` Folder
 
-## A Quick Look at the Folders
-* `assets/`: Contains our styling rules (CSS), icons, and JavaScript logic (the scripts that make buttons and checklists work).
-* `admin/`: Pages meant only for the staff to manage the site.
-* `pages/`: The core user pages (checklist, go-bag guide, feedback).
+While the `pages/` folder is for public users, the `admin/` folder is strictly for the staff managing HandaPH. 
+* **`login.html`**: The secure gateway. Only authorized staff with an email and password can get past this screen.
+* **`dashboard.html`**: A control center that uses interactive graphics to show statistics on how many people are using the site, what kind of houses they have, and their general needs.
+* **`feedback-management.html`**: Where the staff can read the suggestions and ratings sent by users through the public feedback form.
+* **`checklist-items.html` & `preparedness-tips.html`**: Interfaces that allow staff to easily manage and update the advice given to users.
+* **`admin-account.html`**: Profile and settings management for the staff member currently logged in.
+
+### 🎨 The Building Blocks: The `assets/` Folder
+
+This folder holds the underlying resources that make the website look good and function properly.
+* **`css/` (Styling):** This is where the colors, fonts, and layout instructions live. For example, `style.css` handles the main look across the site, while `admin.css` gives the admin dashboard its unique professional layout.
+* **`img/` (Images):** Any logos, icons, or custom illustrations used across the site are stored here.
+* **`js/` (JavaScript / The Engine):** These files are the invisible brain of the website. For instance, `checklist.js` evaluates your survey answers to create your customized plan, `feedback.js` handles form entries securely, and `admin-charts.js` draws the visual statistics on the staff dashboard.
+
+---
 
 *Stay safe, and don't wait for the warning signal to build your family's plan today!*
