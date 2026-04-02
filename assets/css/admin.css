@@ -1,0 +1,559 @@
+/* =============================================================
+   HandaPH — Admin Stylesheet
+   Description: Admin-specific layout: dark sidebar, stat cards,
+                table styles, and CMS form patterns.
+                Extends the main style.css (loaded first).
+   ============================================================= */
+
+
+/* =============================================================
+   ADMIN LAYOUT — Sidebar + Main Content
+   ============================================================= */
+
+/* Full-height flex wrapper */
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+
+/* ---- Sidebar ---- */
+.admin-sidebar {
+  width: 260px;
+  min-width: 260px;
+  background-color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+  transition: width var(--transition-base);
+}
+
+/* Sidebar brand */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg) var(--spacing-lg);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-text-light);
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+}
+
+.sidebar-brand:hover {
+  color: var(--color-text-light);
+}
+
+.sidebar-brand .brand-accent {
+  color: var(--color-secondary);
+}
+
+/* Sidebar admin label */
+.sidebar-admin-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xs);
+}
+
+/* Sidebar nav */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  flex: 1;
+  gap: 2px;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: 0.65rem var(--spacing-md);
+  border-radius: var(--radius-md);
+  color: rgba(255, 255, 255, 0.70);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast);
+}
+
+.sidebar-nav-link i {
+  width: 18px;
+  text-align: center;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.sidebar-nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-light);
+}
+
+.sidebar-nav-link.active {
+  background-color: rgba(234, 88, 12, 0.15);
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.sidebar-nav-link.active i {
+  opacity: 1;
+}
+
+/* Sign out link — at the bottom of sidebar */
+.sidebar-signout {
+  margin-top: auto;
+  padding: var(--spacing-md) var(--spacing-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-signout .sidebar-nav-link {
+  color: rgba(255, 255, 255, 0.50);
+}
+
+.sidebar-signout .sidebar-nav-link:hover {
+  background-color: rgba(220, 38, 38, 0.10);
+  color: #FCA5A5;
+}
+
+
+/* ---- Main Content Area ---- */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* prevent flex overflow */
+  background-color: var(--color-background);
+}
+
+/* Admin top bar */
+.admin-topbar {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.admin-topbar .topbar-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.admin-topbar .topbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Admin page body */
+.admin-body {
+  padding: var(--spacing-xl);
+  flex: 1;
+}
+
+/* Admin page header pattern */
+.admin-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.admin-page-header h1 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.admin-page-header .page-subtext {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+
+/* =============================================================
+   STAT COUNTER CARDS
+   ============================================================= */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.stat-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-card .stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-card .stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+/* =============================================================
+   ADMIN DATA TABLE
+   ============================================================= */
+.admin-table-wrapper {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-table {
+  margin-bottom: 0;
+  font-size: var(--font-size-sm);
+}
+
+.admin-table thead {
+  background-color: #F1F5F9;
+}
+
+.admin-table thead th {
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-table tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+.admin-table tbody tr:hover {
+  background-color: var(--color-hover);
+}
+
+.admin-table tbody td {
+  padding: var(--spacing-md) var(--spacing-lg);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Table action buttons */
+.btn-table-action {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-edit {
+  background-color: #EFF6FF;
+  color: #1D4ED8;
+  border-color: #BFDBFE;
+}
+
+.btn-edit:hover {
+  background-color: #DBEAFE;
+  color: #1D4ED8;
+}
+
+.btn-delete {
+  background-color: #FEF2F2;
+  color: var(--color-danger);
+  border-color: #FECACA;
+}
+
+.btn-delete:hover {
+  background-color: #FEE2E2;
+  color: var(--color-danger);
+}
+
+/* Empty state for tables */
+.table-empty-state {
+  text-align: center;
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  color: var(--color-text-muted);
+}
+
+.table-empty-state i {
+  font-size: 2rem;
+  opacity: 0.30;
+  display: block;
+  margin-bottom: var(--spacing-md);
+}
+
+
+/* =============================================================
+   ADMIN CMS FORM PANEL
+   ============================================================= */
+.cms-form-panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.cms-form-panel .cms-form-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cms-form-panel .form-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
+}
+
+.cms-form-panel .form-control,
+.cms-form-panel .form-select {
+  border-color: var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  padding: 0.5rem 0.75rem;
+  transition: border-color var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+.cms-form-panel .form-control:focus,
+.cms-form-panel .form-select:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.12);
+  outline: none;
+}
+
+.cms-form-panel .form-text {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+/* CMS form action buttons row */
+.cms-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--spacing-lg);
+}
+
+
+/* =============================================================
+   ADMIN CHART CARDS
+   ============================================================= */
+.chart-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+}
+
+.chart-card .chart-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.chart-card .chart-subtitle {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.chart-card canvas {
+  height: 240px !important;
+}
+
+
+/* =============================================================
+   HAMBURGER TOGGLE BUTTON
+   Only visible on mobile — hidden on desktop
+   ============================================================= */
+.sidebar-toggle {
+  display: none; /* hidden by default; shown via media query below */
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 4px 6px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color var(--transition-fast);
+}
+
+.sidebar-toggle:hover {
+  background-color: var(--color-hover);
+}
+
+.hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+/* Animated X when open */
+.sidebar-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.sidebar-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.sidebar-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* =============================================================
+   SIDEBAR OVERLAY BACKDROP (mobile only)
+   ============================================================= */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.50);
+  z-index: 99;
+  backdrop-filter: blur(1px);
+  animation: overlayFadeIn 0.25s ease;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* =============================================================
+   ADMIN RESPONSIVE — Off-canvas drawer on mobile
+   ============================================================= */
+@media (max-width: 991px) {
+
+  /* Show the hamburger toggle */
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  /* Sidebar becomes a fixed off-canvas drawer */
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    min-width: 260px;
+    flex-direction: column;   /* restore column layout */
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+  }
+
+  /* Drawer open state */
+  .admin-sidebar.sidebar-open {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Restore admin-label visibility */
+  .sidebar-admin-label {
+    display: block;
+  }
+
+  /* Restore nav to column */
+  .sidebar-nav {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    width: auto;
+    border-top: none;
+  }
+
+  /* Restore signout to bottom */
+  .sidebar-signout {
+    margin-top: auto;
+    padding: var(--spacing-md) var(--spacing-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: none;
+  }
+
+  /* Slightly tighter page body on mobile */
+  .admin-body {
+    padding: var(--spacing-lg);
+  }
+
+}
+
+/* =============================================================
+   ADMIN LOGIN STYLES
+   ============================================================= */
+.login-container {
+  max-width: 400px;
+  width: 100%;
+}

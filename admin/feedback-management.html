@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HandaPH Admin Feedback Management — Track incoming user responses and ratings.">
+  <title>HandaPH — Feedback Management</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- HandaPH Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+
+<body>
+
+  <!-- ===== ADMIN WRAPPER ===== -->
+  <div class="admin-wrapper">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Admin sidebar">
+      <a href="./dashboard.html" class="sidebar-brand">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        Handa<span class="brand-accent">PH</span>
+      </a>
+      
+      <div class="sidebar-admin-label">Main Menu</div>
+      
+      <nav class="sidebar-nav" aria-label="Admin navigation">
+        <a href="./dashboard.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Analytics
+        </a>
+        <a href="./feedback-management.html" class="sidebar-nav-link active" aria-current="page">
+          <i class="fa-solid fa-comments" aria-hidden="true"></i> Feedback Management
+        </a>
+        <a href="./checklist-items.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-list-check" aria-hidden="true"></i> Checklist Items
+        </a>
+        <a href="./preparedness-tips.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Preparedness Tips
+        </a>
+      </nav>
+
+      <div class="sidebar-signout">
+        <a href="./login.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+    <!-- ===== END SIDEBAR ===== -->
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="admin-main">
+      
+      <!-- TOP BAR -->
+      <header class="admin-topbar">
+        <!-- Hamburger toggle (mobile only) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="adminSidebar">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <h2 class="topbar-title">Feedback Management</h2>
+        <div class="topbar-user">
+          <a href="./admin-account.html" class="topbar-user-link" aria-label="Admin account settings" style="display:flex;align-items:center;gap:0.5rem;font-size:var(--font-size-sm);color:var(--color-text-muted);text-decoration:none;border-radius:var(--radius-md);padding:4px 10px;transition:background-color var(--transition-fast),color var(--transition-fast);">
+            <i class="fa-solid fa-circle-user fs-5 text-primary" aria-hidden="true"></i>
+            <span class="d-none d-sm-inline fw-medium">Admin User</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- PAGE BODY -->
+      <div class="admin-body">
+        
+        <div class="admin-page-header">
+          <div>
+            <h1>User Feedback Logs</h1>
+            <p class="page-subtext">Review submitted platform survey ratings and comments.</p>
+          </div>
+        </div>
+
+        <!-- STAT COUNTERS (matches dashboard pattern) -->
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-value text-primary">4.2</div>
+            <div class="stat-label">Average Star Rating</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value text-secondary">312</div>
+            <div class="stat-label">Total Submissions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value text-success">86%</div>
+            <div class="stat-label">Reported 'Very Easy'</div>
+          </div>
+        </div>
+
+        <!-- FILTER CONTROLS -->
+        <div class="card p-3 mb-4 shadow-sm border-0">
+          <form class="row gy-2 gx-3 align-items-center">
+            <div class="col-sm-3">
+              <label class="visually-hidden" for="filterRating">Rating Filter</label>
+              <select class="form-select" id="filterRating">
+                <option selected value="all">All Ratings</option>
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="2">2 Stars</option>
+                <option value="1">1 Star</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label class="visually-hidden" for="filterLocation">Location Filter</label>
+              <select class="form-select" id="filterLocation">
+                <option selected value="all">All Locations</option>
+                <option value="NCR">NCR</option>
+                <option value="Region III">Region III</option>
+                <!-- Real platform will dynamically list these via PHP -->
+              </select>
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary d-flex align-items-center gap-2">
+                <i class="fa-solid fa-filter" aria-hidden="true"></i> Apply Filters
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- RATINGS TABLE -->
+        <div class="admin-table-wrapper mb-5">
+          <table class="table admin-table" aria-label="User Feedback Submissions">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Understandability</th>
+                <th scope="col">Helpfulness</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Empty State Mockup -->
+              <tr>
+                <td colspan="5">
+                  <div class="table-empty-state">
+                    <i class="fa-solid fa-inbox text-muted"></i>
+                    <p class="mb-0 fw-medium">No Feedback Submissions Yet</p>
+                    <span class="small">Wait until users fill out the checklist survey.</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- COMMENTS SECTION -->
+        <h2 class="h5 text-primary fw-bold mb-3 border-bottom pb-2">Written Suggestions</h2>
+        <div class="admin-table-wrapper">
+          <table class="table admin-table" aria-label="Written Feedback Comments">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Region</th>
+                <th scope="col">Improvement Suggestion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Empty State Mockup -->
+              <tr>
+                <td colspan="3">
+                  <div class="table-empty-state py-4">
+                    <i class="fa-regular fa-comment-dots text-muted fs-3 border-0"></i>
+                    <p class="mb-0 mt-2 fw-medium">No Comments Yet</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <!-- END PAGE BODY -->
+
+    </main>
+    <!-- ===== END MAIN CONTENT ===== -->
+
+  </div>
+  <!-- ===== END ADMIN WRAPPER ===== -->
+
+  <!-- Sidebar overlay backdrop (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Admin Nav Toggle -->
+  <script src="../assets/js/admin-nav.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HandaPH Go-Bag Guide — Prepare your emergency evacuation kit with our essential, recommended, and optional items checklists.">
+
+  <title>HandaPH — Emergency Go-Bag Guide</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- HandaPH Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+  <!-- ===== PAGE WRAPPER ===== -->
+  <div class="page-wrapper">
+
+    <!-- ===== NAVBAR ===== -->
+    <header>
+      <nav class="navbar navbar-expand-lg handaph-navbar" aria-label="Main navigation">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            Handa<span class="brand-accent">PH</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavMenu"
+            aria-controls="mainNavMenu" aria-expanded="false" aria-label="Toggle navigation menu">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mainNavMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./checklist.html">Checklist</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./go-bag.html">Go-Bag</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./feedback.html">Feedback</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- ===== END NAVBAR ===== -->
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="page-content" id="main-content">
+
+      <!-- PAGE HEADER -->
+      <section class="section-pad pb-4">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+              <h1 class="section-heading">Emergency Go-Bag Guide</h1>
+              <p class="section-subtext mb-4">
+                A Go Bag contains survival essentials you need when you have to evacuate quickly.
+                It should be packed and ready at all times.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAROUSEL SECTION -->
+      <section class="container pb-5">
+        <div id="goBagCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators mb-3">
+            <button type="button" data-bs-target="#goBagCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#goBagCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#goBagCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner shadow-sm rounded-4">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+              <div class="gobag-carousel-slide gobag-slide-dark">
+                <i class="fa-solid fa-suitcase-medical fa-3x mb-3 text-warning"></i>
+                <h3 class="mb-2 text-white">General Tips</h3>
+                <p class="mb-0" style="max-width: 500px; opacity: 0.9;">Maintain a 72-hour survival kit consisting of non-perishable food, water, and first aid ready for grab-and-go emergencies.</p>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+              <div class="gobag-carousel-slide gobag-slide-light">
+                <i class="fa-solid fa-users text-primary fa-3x mb-3"></i>
+                <h3 class="mb-2 text-primary">Special Needs</h3>
+                <p class="mb-0" style="max-width: 500px;">Include extra diapers, medications, baby formulas, and accessibility items tailored to the specific individuals relying on your bag.</p>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+              <div class="gobag-carousel-slide gobag-slide-dark">
+                <i class="fa-solid fa-piggy-bank text-success fa-3x mb-3"></i>
+                <h3 class="mb-2 text-white">Budget Alternatives</h3>
+                <p class="mb-0" style="max-width: 500px; opacity: 0.9;">A capable Go-Bag doesn't have to be expensive. Recycled water containers and household first-aid scraps go a long way.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#goBagCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-secondary rounded-circle p-2" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#goBagCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-secondary rounded-circle p-2" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- TABS SECTION -->
+      <section class="container pb-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+          <!-- Pills -->
+          <ul class="nav nav-pills gobag-nav-pills" id="gobagPills" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pills-essentials-tab" data-bs-toggle="pill" data-bs-target="#pills-essentials" type="button" role="tab" aria-controls="pills-essentials" aria-selected="true">Essentials</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-recommended-tab" data-bs-toggle="pill" data-bs-target="#pills-recommended" type="button" role="tab" aria-controls="pills-recommended" aria-selected="false">Recommended</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-optional-tab" data-bs-toggle="pill" data-bs-target="#pills-optional" type="button" role="tab" aria-controls="pills-optional" aria-selected="false">Optional</button>
+            </li>
+          </ul>
+
+          <button class="btn btn-dark-navy" type="button">
+            <i class="fa-solid fa-file-pdf me-2"></i>Download Complete Guide
+          </button>
+        </div>
+
+        <div class="tab-content" id="gobagPillsContent">
+          <!-- ESSENTIALS TAB -->
+          <div class="tab-pane fade show active" id="pills-essentials" role="tabpanel" aria-labelledby="pills-essentials-tab" tabindex="0">
+            <div class="row g-3">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-bottle-water"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Drinking Water</h4>
+                    <p>1 liter per person, per day (for 3 days).</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-utensils"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Non-Perishable Food</h4>
+                    <p>Easy-to-open canned goods, biscuits, or MREs.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-kit-medical"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>First Aid Kit & Meds</h4>
+                    <p>Bandages, alcohol, and prescription medicines.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-folder-open"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Important Documents</h4>
+                    <p>Copies of IDs, birth certificates in a sealed pouch.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-flashlight"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Flashlight & Batteries</h4>
+                    <p>Keeps you visible and helps navigation at night.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-wind"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Whistle</h4>
+                    <p>Used to signal rescuers safely if trapped nearby.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RECOMMENDED TAB -->
+          <div class="tab-pane fade" id="pills-recommended" role="tabpanel" aria-labelledby="pills-recommended-tab" tabindex="0">
+            <div class="row g-3">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-battery-full"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Power Bank</h4>
+                    <p>Keep your mobile devices charged for critical updates.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-shirt"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Change of Clothes</h4>
+                    <p>Clean undergarments and a warm outer layer.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Extra Cash</h4>
+                    <p>Small bills or coins in case ATMs are fully down.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-radio"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Battery-Powered Radio</h4>
+                    <p>Access emergency broadcasts manually.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPTIONAL TAB -->
+          <div class="tab-pane fade" id="pills-optional" role="tabpanel" aria-labelledby="pills-optional-tab" tabindex="0">
+            <div class="row g-3">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-box"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>DIY Waterproof Pouches</h4>
+                    <p>Cheap Ziploc bags or secure trash bags to guard electronics.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-recycle"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Recycled Containers</h4>
+                    <p>Used soda bottles refilled with drinking water.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="gobag-item-card">
+                  <div class="gobag-item-icon"><i class="fa-solid fa-bed"></i></div>
+                  <div class="gobag-item-content">
+                    <h4>Extra Comfort Items</h4>
+                    <p>Minimal blankets or a stuffed toy for younger kids.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feedback CTA -->
+      <div class="feedback-cta" aria-label="Share feedback">
+        <div class="container">
+          <div class="feedback-cta-inner text-center py-5 bg-white border rounded shadow-sm">
+            <h3 class="feedback-cta-title mb-2">How was your experience?</h3>
+            <p class="feedback-cta-text mb-4 text-muted">Help us improve HandaPH for every Filipino family.</p>
+            <a href="./feedback.html" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-star me-2" aria-hidden="true"></i>
+              Give Feedback
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- ===== END MAIN CONTENT ===== -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="handaph-footer mt-auto" aria-label="Site footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <div class="footer-brand">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              Handa<span class="brand-accent">PH</span>
+            </div>
+            <p class="footer-tagline">
+              Personalized typhoon preparedness for every Filipino household.
+            </p>
+          </div>
+          <div class="col-6 col-md-2 mb-4 mb-md-0">
+            <h2 class="footer-heading">Quick Links</h2>
+            <nav class="footer-links" aria-label="Footer quick links">
+              <a href="../index.html">Home</a>
+              <a href="./checklist.html">Checklist</a>
+              <a href="./go-bag.html">Go-Bag</a>
+              <a href="./feedback.html">Feedback</a>
+            </nav>
+          </div>
+          <div class="col-6 col-md-3 mb-4 mb-md-0">
+            <h2 class="footer-heading">Resources</h2>
+            <nav class="footer-links" aria-label="External resources">
+              <a href="https://www.pagasa.dost.gov.ph" target="_blank" rel="noopener noreferrer">PAGASA</a>
+              <a href="https://www.ndrrmc.gov.ph" target="_blank" rel="noopener noreferrer">NDRRMC</a>
+              <a href="https://www.dilg.gov.ph" target="_blank" rel="noopener noreferrer">DILG</a>
+            </nav>
+          </div>
+          <div class="col-12 col-md-3">
+            <h2 class="footer-heading">Admin</h2>
+            <nav class="footer-links" aria-label="Admin access">
+              <a href="../admin/login.html">Admin Login</a>
+            </nav>
+          </div>
+        </div>
+        <hr class="footer-divider">
+        <p class="footer-disclaimer">
+          <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+          Not affiliated with any government agency. For official advisories, always follow PAGASA, NDRRMC, and your local government unit.
+        </p>
+        <p class="footer-copyright">
+          &copy; 2026 HandaPH. Built to help Filipino families stay prepared.
+        </p>
+      </div>
+    </footer>
+    <!-- ===== END FOOTER ===== -->
+
+  </div>
+  <!-- ===== END PAGE WRAPPER ===== -->
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- GoBag JS (tab interaction or custom logic) -->
+  <script src="../assets/js/gobag.js"></script>
+
+</body>
+
+</html>

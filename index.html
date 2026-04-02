@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HandaPH — A personalized typhoon preparedness system that helps Filipino families build their Go-Bag and action plan before, during, and after a storm.">
+
+  <title>HandaPH — Be Ready Before the Storm</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- HandaPH Custom Stylesheet -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <!-- ===== PAGE WRAPPER ===== -->
+  <div class="page-wrapper">
+
+    <!-- ===== NAVBAR ===== -->
+    <header>
+      <nav class="navbar navbar-expand-lg handaph-navbar" aria-label="Main navigation">
+        <div class="container">
+
+          <!-- Brand -->
+          <a class="navbar-brand" href="./index.html">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            Handa<span class="brand-accent">PH</span>
+          </a>
+
+          <!-- Mobile Toggle -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavMenu"
+            aria-controls="mainNavMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation menu">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Nav Links -->
+          <div class="collapse navbar-collapse" id="mainNavMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./pages/checklist.html">Checklist</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./pages/go-bag.html">Go-Bag</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./pages/feedback.html">Feedback</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </nav>
+    </header>
+    <!-- ===== END NAVBAR ===== -->
+
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="page-content" id="main-content">
+
+
+      <!-- ===== HERO SECTION ===== -->
+      <section class="hero-section" aria-labelledby="hero-heading">
+        <div class="container">
+          <div class="row align-items-center">
+
+            <!-- Hero Text Column -->
+            <div class="col-12 col-lg-6 hero-text-col">
+              <span class="hero-eyebrow">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                Typhoon Preparedness
+              </span>
+
+              <h1 id="hero-heading" class="hero-heading">
+                Be Ready<br>
+                <span class="hero-heading-accent">Before the Storm</span>
+              </h1>
+
+              <p class="hero-subtext">
+                HandaPH generates a personalized preparedness plan for your household — based on
+                your location, family size, and special needs. No more guessing. No more
+                last-minute panic.
+              </p>
+
+              <!-- Hero Stats Row -->
+              <div class="hero-stats" aria-label="Key statistics">
+                <div class="hero-stat">
+                  <span class="hero-stat-value">20+</span>
+                  <span class="hero-stat-label">Cyclones per year</span>
+                </div>
+                <div class="hero-stat-divider" aria-hidden="true"></div>
+                <div class="hero-stat">
+                  <span class="hero-stat-value">27%</span>
+                  <span class="hero-stat-label">Have a Go-Bag ready</span>
+                </div>
+                <div class="hero-stat-divider" aria-hidden="true"></div>
+                <div class="hero-stat">
+                  <span class="hero-stat-value">3</span>
+                  <span class="hero-stat-label">Phases covered</span>
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <a href="./pages/checklist.html" class="btn btn-primary btn-hero">
+                <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
+                Generate Your Plan
+              </a>
+
+              <p class="hero-note">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                No registration required. Completely free.
+              </p>
+            </div>
+
+            <!-- Hero Illustration Column -->
+            <div class="col-12 col-lg-6 hero-img-col" aria-hidden="true">
+              <div class="hero-illustration">
+                <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+
+                  <!-- Background circle -->
+                  <circle cx="210" cy="190" r="170" fill="#F1F5F9" />
+
+                  <!-- Storm cloud -->
+                  <ellipse cx="290" cy="80" rx="55" ry="30" fill="#CBD5E1" />
+                  <ellipse cx="265" cy="90" rx="40" ry="28" fill="#CBD5E1" />
+                  <ellipse cx="318" cy="88" rx="38" ry="25" fill="#CBD5E1" />
+                  <ellipse cx="290" cy="100" rx="58" ry="22" fill="#CBD5E1" />
+
+                  <!-- Rain drops -->
+                  <line x1="262" y1="115" x2="254" y2="132" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="280" y1="118" x2="272" y2="135" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="298" y1="116" x2="290" y2="133" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="316" y1="118" x2="308" y2="135" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+
+                  <!-- House base -->
+                  <rect x="120" y="210" width="180" height="120" rx="4" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+
+                  <!-- House roof -->
+                  <polygon points="105,215 210,135 315,215" fill="#1E293B"/>
+                  <polygon points="210,140 295,210 210,210" fill="#0F172A" opacity="0.15"/>
+
+                  <!-- Door -->
+                  <rect x="188" y="268" width="44" height="62" rx="4" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="1.5"/>
+                  <circle cx="225" cy="300" r="3" fill="#94A3B8"/>
+
+                  <!-- Left window -->
+                  <rect x="135" y="230" width="46" height="40" rx="4" fill="#BAE6FD" stroke="#E2E8F0" stroke-width="1.5"/>
+                  <line x1="158" y1="230" x2="158" y2="270" stroke="#E2E8F0" stroke-width="1.5"/>
+                  <line x1="135" y1="250" x2="181" y2="250" stroke="#E2E8F0" stroke-width="1.5"/>
+
+                  <!-- Right window -->
+                  <rect x="239" y="230" width="46" height="40" rx="4" fill="#BAE6FD" stroke="#E2E8F0" stroke-width="1.5"/>
+                  <line x1="262" y1="230" x2="262" y2="270" stroke="#E2E8F0" stroke-width="1.5"/>
+                  <line x1="239" y1="250" x2="285" y2="250" stroke="#E2E8F0" stroke-width="1.5"/>
+
+                  <!-- Shield overlapping roof -->
+                  <path d="M210,148 L240,162 L240,188 Q240,208 210,218 Q180,208 180,188 L180,162 Z" fill="#EA580C" opacity="0.95"/>
+                  <polyline points="196,184 206,196 226,172" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                  <!-- Ground line -->
+                  <rect x="90" y="328" width="240" height="6" rx="3" fill="#E2E8F0"/>
+
+                  <!-- Tree left -->
+                  <rect x="96" y="298" width="8" height="30" rx="2" fill="#CBD5E1"/>
+                  <ellipse cx="100" cy="288" rx="18" ry="18" fill="#86EFAC"/>
+                  <ellipse cx="100" cy="280" rx="14" ry="14" fill="#4ADE80"/>
+
+                  <!-- Tree right -->
+                  <rect x="316" y="298" width="8" height="30" rx="2" fill="#CBD5E1"/>
+                  <ellipse cx="320" cy="288" rx="18" ry="18" fill="#86EFAC"/>
+                  <ellipse cx="320" cy="280" rx="14" ry="14" fill="#4ADE80"/>
+
+                </svg>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- ===== END HERO SECTION ===== -->
+
+
+      <!-- ===== FEATURE CARDS SECTION ===== -->
+      <section class="features-section section-pad" aria-labelledby="features-heading">
+        <div class="container">
+
+          <div class="section-header">
+            <h2 id="features-heading" class="section-heading">Everything You Need to Prepare</h2>
+            <p class="section-subtext">Personalized, actionable, and designed for Filipino families.</p>
+          </div>
+
+          <div class="row g-4">
+
+            <!-- Card 1 -->
+            <div class="col-12 col-md-6 col-lg-3">
+              <article class="feature-card h-100">
+                <div class="feature-card-icon feature-icon-orange" aria-hidden="true">
+                  <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+                <h3 class="feature-card-title">Personalized Checklist</h3>
+                <p class="feature-card-text">
+                  Answer 4 quick questions about your household and get a tailored
+                  preparedness plan for Before, During, and After the storm.
+                </p>
+                <a href="./pages/checklist.html" class="feature-card-link" aria-label="Go to Personalized Checklist">
+                  Start checklist <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </article>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-12 col-md-6 col-lg-3">
+              <article class="feature-card h-100">
+                <div class="feature-card-icon feature-icon-navy" aria-hidden="true">
+                  <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                <h3 class="feature-card-title">Go-Bag Guide</h3>
+                <p class="feature-card-text">
+                  Learn exactly what to pack in your emergency bag — Essentials,
+                  Recommended items, and budget-friendly alternatives.
+                </p>
+                <a href="./pages/go-bag.html" class="feature-card-link" aria-label="Go to Go-Bag Guide">
+                  View guide <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </article>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-12 col-md-6 col-lg-3">
+              <article class="feature-card h-100">
+                <div class="feature-card-icon feature-icon-orange" aria-hidden="true">
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <h3 class="feature-card-title">Share Feedback</h3>
+                <p class="feature-card-text">
+                  Help us improve HandaPH by rating your experience and sharing
+                  suggestions. Your input shapes future updates.
+                </p>
+                <a href="./pages/feedback.html" class="feature-card-link" aria-label="Go to Feedback page">
+                  Give feedback <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </article>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-12 col-md-6 col-lg-3">
+              <article class="feature-card h-100">
+                <div class="feature-card-icon feature-icon-navy" aria-hidden="true">
+                  <i class="fa-solid fa-file-arrow-down"></i>
+                </div>
+                <h3 class="feature-card-title">Download Resources</h3>
+                <p class="feature-card-text">
+                  Save your personalized checklist as a PDF for offline access.
+                  Works even when power and internet are out.
+                </p>
+                <a href="./pages/checklist.html" class="feature-card-link" aria-label="Generate and download your checklist">
+                  Get your PDF <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </article>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- ===== END FEATURE CARDS SECTION ===== -->
+
+
+      <!-- ===== HOW IT WORKS SECTION ===== -->
+      <section class="how-section section-pad-sm" aria-labelledby="how-heading">
+        <div class="container">
+
+          <div class="section-header">
+            <h2 id="how-heading" class="section-heading">How HandaPH Works</h2>
+            <p class="section-subtext">Three simple steps to a complete household plan.</p>
+          </div>
+
+          <div class="row g-4 justify-content-center">
+
+            <div class="col-12 col-md-4">
+              <div class="how-step">
+                <div class="how-step-number" aria-hidden="true">1</div>
+                <h3 class="how-step-title">Answer 4 Questions</h3>
+                <p class="how-step-text">
+                  Tell us your location type, household size, any special members,
+                  and your house material.
+                </p>
+              </div>
+            </div>
+
+
+
+            <div class="col-12 col-md-4">
+              <div class="how-step">
+                <div class="how-step-number how-step-number--orange" aria-hidden="true">2</div>
+                <h3 class="how-step-title">Get Your Plan</h3>
+                <p class="how-step-text">
+                  We generate a personalized checklist covering Before, During,
+                  and After the typhoon — tailored to your household.
+                </p>
+              </div>
+            </div>
+
+
+
+            <div class="col-12 col-md-4">
+              <div class="how-step">
+                <div class="how-step-number" aria-hidden="true">3</div>
+                <h3 class="how-step-title">Save & Stay Ready</h3>
+                <p class="how-step-text">
+                  Download your checklist as a PDF. Keep it offline so you're
+                  prepared even when the internet goes out.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="text-center mt-5">
+            <a href="./pages/checklist.html" class="btn btn-primary btn-lg px-5">
+              <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
+              Start Your Plan Now
+            </a>
+          </div>
+
+        </div>
+      </section>
+      <!-- ===== END HOW IT WORKS SECTION ===== -->
+
+
+      <!-- ===== MYTH-BUSTING SECTION ===== -->
+      <section class="myths-section section-pad" aria-labelledby="myths-heading">
+        <div class="container">
+
+          <div class="section-header">
+            <h2 id="myths-heading" class="section-heading">Common Typhoon Myths</h2>
+            <p class="section-subtext">
+              Dangerous misconceptions that put lives at risk — and the facts that correct them.
+            </p>
+          </div>
+
+          <div class="accordion myths-accordion" id="mythsAccordion">
+
+            <!-- Myth 1 -->
+            <div class="accordion-item myth-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button myth-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#myth1"
+                  aria-expanded="false" aria-controls="myth1">
+                  <span class="myth-label" aria-label="Myth">MYTH</span>
+                  "I live in a concrete house, so I'm safe during any typhoon."
+                </button>
+              </h3>
+              <div id="myth1" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
+                <div class="accordion-body myth-body">
+                  <div class="myth-fact-label">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                    The Fact
+                  </div>
+                  <p>
+                    Concrete structures can still be severely damaged by strong winds, flooding, and storm surges.
+                    Super Typhoon Yolanda (2013) destroyed concrete buildings in coastal areas of Eastern Visayas.
+                    House material reduces risk but does not eliminate it — especially in flood-prone and coastal zones.
+                  </p>
+                  <p class="myth-action">
+                    <strong>What to do:</strong> Know your storm surge and flood risk zone regardless of your
+                    house material. Always follow evacuation orders from your LGU.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Myth 2 -->
+            <div class="accordion-item myth-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button myth-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#myth2"
+                  aria-expanded="false" aria-controls="myth2">
+                  <span class="myth-label" aria-label="Myth">MYTH</span>
+                  "I can just prepare when the typhoon signal is raised."
+                </button>
+              </h3>
+              <div id="myth2" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
+                <div class="accordion-body myth-body">
+                  <div class="myth-fact-label">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                    The Fact
+                  </div>
+                  <p>
+                    Once a signal is raised, stores close quickly, roads congest, and supplies run out within hours.
+                    Only 27% of Filipino households have a prepared Go-Bag at any given time. Waiting until the
+                    last minute is one of the leading causes of preventable typhoon-related casualties.
+                  </p>
+                  <p class="myth-action">
+                    <strong>What to do:</strong> Build your Go-Bag now — before any typhoon is announced.
+                    Replenish it after every typhoon season.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Myth 3 -->
+            <div class="accordion-item myth-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button myth-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#myth3"
+                  aria-expanded="false" aria-controls="myth3">
+                  <span class="myth-label" aria-label="Myth">MYTH</span>
+                  "Opening windows equalizes pressure and prevents damage."
+                </button>
+              </h3>
+              <div id="myth3" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
+                <div class="accordion-body myth-body">
+                  <div class="myth-fact-label">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                    The Fact
+                  </div>
+                  <p>
+                    This is false and dangerous. Opening windows allows wind, rain, and flying debris to enter
+                    directly — increasing injury risk and structural damage. Pressure differences during a typhoon
+                    are caused by the storm system itself, not sealed windows.
+                  </p>
+                  <p class="myth-action">
+                    <strong>What to do:</strong> Keep all windows and doors closed and sealed during a typhoon.
+                    Reinforce with tape or boards before the storm arrives.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Myth 4 -->
+            <div class="accordion-item myth-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button myth-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#myth4"
+                  aria-expanded="false" aria-controls="myth4">
+                  <span class="myth-label" aria-label="Myth">MYTH</span>
+                  "The eye of the typhoon means the storm is over — it's safe to go out."
+                </button>
+              </h3>
+              <div id="myth4" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
+                <div class="accordion-body myth-body">
+                  <div class="myth-fact-label">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                    The Fact
+                  </div>
+                  <p>
+                    The calm at the eye is temporary. The eyewall — the most violent part of the storm — returns
+                    shortly after. People who went outside during the eye of Yolanda were caught in the returning
+                    eyewall and suffered serious casualties.
+                  </p>
+                  <p class="myth-action">
+                    <strong>What to do:</strong> Stay in your shelter until PAGASA officially declares the
+                    typhoon has passed. Never go outside during the eye.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Myth 5 -->
+            <div class="accordion-item myth-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button myth-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#myth5"
+                  aria-expanded="false" aria-controls="myth5">
+                  <span class="myth-label" aria-label="Myth">MYTH</span>
+                  "Floods only affect people who live near rivers or the coast."
+                </button>
+              </h3>
+              <div id="myth5" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
+                <div class="accordion-body myth-body">
+                  <div class="myth-fact-label">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                    The Fact
+                  </div>
+                  <p>
+                    Flash floods and urban flooding can occur anywhere — including inland cities far from rivers.
+                    Poor drainage, clogged waterways, and heavy rainfall cause rapid flooding in residential
+                    streets. Many casualties occur in areas not traditionally considered flood zones.
+                  </p>
+                  <p class="myth-action">
+                    <strong>What to do:</strong> Know your barangay's flood history and have a vertical
+                    evacuation plan even if you live inland.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- ===== END MYTH-BUSTING SECTION ===== -->
+
+
+      <!-- ===== CTA BANNER ===== -->
+      <section class="cta-banner section-pad-sm" aria-labelledby="cta-heading">
+        <div class="container">
+          <div class="cta-banner-inner">
+            <div class="cta-banner-text">
+              <h2 id="cta-heading" class="cta-banner-heading">
+                Don't wait for the warning signal.
+              </h2>
+              <p class="cta-banner-subtext">
+                Build your family's plan today. It takes less than 2 minutes.
+              </p>
+            </div>
+            <div class="cta-banner-actions">
+              <a href="./pages/checklist.html" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
+                Generate Your Plan
+              </a>
+              <a href="./pages/go-bag.html" class="btn btn-outline-light btn-lg">
+                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+                View Go-Bag Guide
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== END CTA BANNER ===== -->
+
+
+    </main>
+    <!-- ===== END MAIN CONTENT ===== -->
+
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="handaph-footer" aria-label="Site footer">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <div class="footer-brand">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              Handa<span class="brand-accent">PH</span>
+            </div>
+            <p class="footer-tagline">
+              Personalized typhoon preparedness for every Filipino household.
+            </p>
+          </div>
+
+          <div class="col-6 col-md-2 mb-4 mb-md-0">
+            <h2 class="footer-heading">Quick Links</h2>
+            <nav class="footer-links" aria-label="Footer quick links">
+              <a href="./index.html">Home</a>
+              <a href="./pages/checklist.html">Checklist</a>
+              <a href="./pages/go-bag.html">Go-Bag</a>
+              <a href="./pages/feedback.html">Feedback</a>
+            </nav>
+          </div>
+
+          <div class="col-6 col-md-3 mb-4 mb-md-0">
+            <h2 class="footer-heading">Resources</h2>
+            <nav class="footer-links" aria-label="External resources">
+              <a href="https://www.pagasa.dost.gov.ph" target="_blank" rel="noopener noreferrer">PAGASA</a>
+              <a href="https://www.ndrrmc.gov.ph" target="_blank" rel="noopener noreferrer">NDRRMC</a>
+              <a href="https://www.dilg.gov.ph" target="_blank" rel="noopener noreferrer">DILG</a>
+            </nav>
+          </div>
+
+          <div class="col-12 col-md-3">
+            <h2 class="footer-heading">Admin</h2>
+            <nav class="footer-links" aria-label="Admin access">
+              <a href="./admin/login.html">Admin Login</a>
+            </nav>
+          </div>
+
+        </div>
+
+        <hr class="footer-divider">
+
+        <p class="footer-disclaimer">
+          <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+          Not affiliated with any government agency. For official advisories, always follow PAGASA, NDRRMC, and your local government unit.
+        </p>
+        <p class="footer-copyright">
+          &copy; 2026 HandaPH. Built to help Filipino families stay prepared.
+        </p>
+
+      </div>
+    </footer>
+    <!-- ===== END FOOTER ===== -->
+
+  </div>
+  <!-- ===== END PAGE WRAPPER ===== -->
+
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

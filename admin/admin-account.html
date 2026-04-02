@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="HandaPH Admin Account — Manage your administrator credentials and account settings.">
+  <title>HandaPH — Admin Account Settings</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- HandaPH Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+
+  <style>
+    /* ---- Account Page Specific Styles ---- */
+    .account-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary) 0%, #334155 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .account-profile-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .account-section-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .account-section-card .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .account-section-card .section-header i {
+      color: var(--color-secondary);
+      font-size: 1rem;
+    }
+
+    .account-section-card .section-header h2 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin: 0;
+    }
+
+    .danger-zone-card {
+      background-color: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .danger-zone-card .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid #FECACA;
+    }
+
+    .danger-zone-card .section-header i {
+      color: #DC2626;
+    }
+
+    .danger-zone-card .section-header h2 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #DC2626;
+      margin: 0;
+    }
+
+    .account-badge {
+      background-color: rgba(234, 88, 12, 0.1);
+      color: var(--color-secondary);
+      border: 1px solid rgba(234, 88, 12, 0.25);
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .topbar-user-link {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      padding: 4px 10px;
+      transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .topbar-user-link:hover {
+      background-color: var(--color-hover);
+      color: var(--color-primary);
+    }
+
+    .topbar-user-link.active-user {
+      background-color: rgba(234, 88, 12, 0.08);
+      color: var(--color-secondary);
+    }
+
+    .form-feedback-success {
+      display: none;
+      font-size: 0.8rem;
+      color: #16A34A;
+      margin-top: var(--spacing-xs);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== ADMIN WRAPPER ===== -->
+  <div class="admin-wrapper">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Admin sidebar">
+      <a href="./dashboard.html" class="sidebar-brand">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        Handa<span class="brand-accent">PH</span>
+      </a>
+
+      <div class="sidebar-admin-label">Main Menu</div>
+
+      <nav class="sidebar-nav" aria-label="Admin navigation">
+        <a href="./dashboard.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Analytics
+        </a>
+        <a href="./feedback-management.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-comments" aria-hidden="true"></i> Feedback Management
+        </a>
+        <a href="./checklist-items.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-list-check" aria-hidden="true"></i> Checklist Items
+        </a>
+        <a href="./preparedness-tips.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Preparedness Tips
+        </a>
+      </nav>
+
+      <div class="sidebar-signout">
+        <a href="./login.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+    <!-- ===== END SIDEBAR ===== -->
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="admin-main">
+
+      <!-- TOP BAR -->
+      <header class="admin-topbar">
+        <!-- Hamburger toggle (mobile only) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation menu" aria-expanded="false"
+          aria-controls="adminSidebar">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <h2 class="topbar-title">Account Settings</h2>
+        <div class="topbar-user">
+          <a href="./admin-account.html" class="topbar-user-link active-user" aria-label="Admin account settings">
+            <i class="fa-solid fa-circle-user fs-5" aria-hidden="true"></i>
+            <span class="d-none d-sm-inline fw-medium">Admin User</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- PAGE BODY -->
+      <div class="admin-body">
+
+        <div class="admin-page-header">
+          <div>
+            <h1>Admin Account</h1>
+            <p class="page-subtext">View and manage your administrator credentials and account settings.</p>
+          </div>
+        </div>
+
+        <!-- ── PROFILE OVERVIEW CARD ── -->
+        <div class="account-profile-card">
+          <div class="d-flex align-items-center gap-4 flex-wrap">
+            <div class="account-avatar" aria-hidden="true">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <h2 class="h5 fw-bold mb-0" style="color: var(--color-primary);" id="profile-display-name">Admin User
+                </h2>
+                <span class="account-badge">Administrator</span>
+              </div>
+              <p class="small text-muted mb-0">
+                <i class="fa-solid fa-at me-1" aria-hidden="true"></i>
+                <span id="profile-display-username">admin</span>
+              </p>
+              <p class="small text-muted mb-0 mt-1">
+                <i class="fa-solid fa-clock me-1" aria-hidden="true"></i>
+                Last login: <span class="fw-medium">Today, 10:42 AM</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-6">
+
+            <!-- ── CHANGE USERNAME SECTION ── -->
+            <div class="account-section-card">
+              <div class="section-header">
+                <i class="fa-solid fa-user-pen" aria-hidden="true"></i>
+                <h2>Change Username</h2>
+              </div>
+              <form id="usernameForm" novalidate>
+                <div class="mb-3">
+                  <label for="currentUsername" class="form-label fw-semibold small text-muted">Current Username</label>
+                  <input type="text" class="form-control form-control-sm" id="currentUsername" value="admin" readonly
+                    style="background-color: #F8FAFC; color: var(--color-text-muted);">
+                </div>
+                <div class="mb-3">
+                  <label for="newUsername" class="form-label fw-semibold small text-muted">New Username</label>
+                  <input type="text" class="form-control form-control-sm" id="newUsername"
+                    placeholder="Enter new username..." minlength="3" required>
+                  <div class="invalid-feedback">Username must be at least 3 characters.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="confirmUsername" class="form-label fw-semibold small text-muted">Confirm New
+                    Username</label>
+                  <input type="text" class="form-control form-control-sm" id="confirmUsername"
+                    placeholder="Re-enter new username..." required>
+                  <div class="invalid-feedback">Usernames do not match.</div>
+                </div>
+                <p class="form-feedback-success" id="usernameSaved">
+                  <i class="fa-solid fa-circle-check me-1"></i> Username updated successfully.
+                </p>
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary btn-sm px-4 fw-medium">
+                    <i class="fa-solid fa-floppy-disk me-1"></i> Save Username
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-6">
+
+            <!-- ── CHANGE PASSWORD SECTION ── -->
+            <div class="account-section-card">
+              <div class="section-header">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                <h2>Change Password</h2>
+              </div>
+              <form id="passwordForm" novalidate>
+                <div class="mb-3">
+                  <label for="currentPassword" class="form-label fw-semibold small text-muted">Current Password</label>
+                  <input type="password" class="form-control form-control-sm" id="currentPassword"
+                    placeholder="Enter current password..." required>
+                  <div class="invalid-feedback">Please enter your current password.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="newPassword" class="form-label fw-semibold small text-muted">New Password</label>
+                  <input type="password" class="form-control form-control-sm" id="newPassword"
+                    placeholder="Enter new password..." minlength="8" required>
+                  <div class="invalid-feedback">Password must be at least 8 characters.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="confirmPassword" class="form-label fw-semibold small text-muted">Confirm New
+                    Password</label>
+                  <input type="password" class="form-control form-control-sm" id="confirmPassword"
+                    placeholder="Re-enter new password..." required>
+                  <div class="invalid-feedback">Passwords do not match.</div>
+                </div>
+                <p class="form-feedback-success" id="passwordSaved">
+                  <i class="fa-solid fa-circle-check me-1"></i> Password updated successfully.
+                </p>
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary btn-sm px-4 fw-medium">
+                    <i class="fa-solid fa-floppy-disk me-1"></i> Save Password
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── DANGER ZONE ── -->
+        <div class="danger-zone-card">
+          <div class="section-header">
+            <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+            <h2>Danger Zone</h2>
+          </div>
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div>
+              <p class="fw-semibold mb-1" style="color: #DC2626; font-size: 0.9rem;">Delete Administrator Account</p>
+              <p class="small text-muted mb-0">Permanently remove this admin account and all associated access. This
+                action cannot be undone.</p>
+            </div>
+            <button class="btn btn-sm fw-semibold px-4" style="background-color: #DC2626; color: #fff; border: none;"
+              data-bs-toggle="modal" data-bs-target="#deleteAccountModal" id="deleteAccountBtn">
+              <i class="fa-solid fa-trash-can me-1"></i> Delete Account
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <!-- END PAGE BODY -->
+
+    </main>
+    <!-- ===== END MAIN CONTENT ===== -->
+
+  </div>
+  <!-- ===== END ADMIN WRAPPER ===== -->
+
+  <!-- Sidebar overlay backdrop (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <!-- ===== DELETE ACCOUNT CONFIRMATION MODAL ===== -->
+  <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+
+        <div class="modal-header border-0 pb-0 pt-4 px-4">
+          <div class="d-flex align-items-center gap-2">
+            <div
+              style="width:36px;height:36px;border-radius:50%;background:#FEE2E2;display:flex;align-items:center;justify-content:center;">
+              <i class="fa-solid fa-triangle-exclamation" style="color:#DC2626;font-size:0.85rem;"></i>
+            </div>
+            <h2 class="h6 fw-bold mb-0" id="deleteAccountModalLabel" style="color:#DC2626;">Delete Admin Account</h2>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body px-4 py-3">
+          <p class="small text-muted mb-3">Are you sure you want to permanently delete the <strong>Admin User</strong>
+            account? This will remove all admin access and cannot be reversed.</p>
+          <div class="p-3 rounded-2 mb-2" style="background:#FEF2F2;border:1px solid #FECACA;">
+            <p class="small mb-1 fw-semibold" style="color:#DC2626;">
+              <i class="fa-solid fa-circle-xmark me-1"></i> You will be signed out immediately.
+            </p>
+            <p class="small mb-0 fw-semibold" style="color:#DC2626;">
+              <i class="fa-solid fa-circle-xmark me-1"></i> All admin privileges will be revoked.
+            </p>
+          </div>
+          <div class="mt-3">
+            <label for="deleteConfirmText" class="form-label small fw-semibold text-muted">Type <code>DELETE</code> to
+              confirm</label>
+            <input type="text" class="form-control form-control-sm" id="deleteConfirmText"
+              placeholder="Type DELETE here...">
+          </div>
+        </div>
+
+        <div class="modal-footer border-0 px-4 pb-4 pt-2">
+          <button type="button" class="btn btn-outline-secondary btn-sm fw-medium px-4"
+            data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-sm fw-semibold px-4" id="confirmDeleteBtn"
+            style="background-color:#DC2626;color:#fff;opacity:0.5;" disabled>
+            <i class="fa-solid fa-trash-can me-1"></i> Permanently Delete
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- ===== END DELETE ACCOUNT MODAL ===== -->
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    'use strict';
+
+    // ── Username Form ──
+    document.getElementById('usernameForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const newVal = document.getElementById('newUsername').value.trim();
+      const confVal = document.getElementById('confirmUsername').value.trim();
+      let valid = true;
+
+      document.getElementById('newUsername').classList.remove('is-invalid');
+      document.getElementById('confirmUsername').classList.remove('is-invalid');
+
+      if (newVal.length < 3) {
+        document.getElementById('newUsername').classList.add('is-invalid');
+        valid = false;
+      }
+      if (newVal !== confVal || confVal === '') {
+        document.getElementById('confirmUsername').classList.add('is-invalid');
+        valid = false;
+      }
+
+      if (valid) {
+        document.getElementById('currentUsername').value = newVal;
+        document.getElementById('profile-display-username').textContent = newVal;
+        document.getElementById('profile-display-name').textContent = newVal.charAt(0).toUpperCase() + newVal.slice(1) + ' User';
+        document.getElementById('newUsername').value = '';
+        document.getElementById('confirmUsername').value = '';
+        const fb = document.getElementById('usernameSaved');
+        fb.style.display = 'block';
+        setTimeout(() => { fb.style.display = 'none'; }, 4000);
+      }
+    });
+
+    // ── Password Form ──
+    document.getElementById('passwordForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const cur = document.getElementById('currentPassword').value.trim();
+      const nPwd = document.getElementById('newPassword').value.trim();
+      const cPwd = document.getElementById('confirmPassword').value.trim();
+      let valid = true;
+
+      ['currentPassword', 'newPassword', 'confirmPassword'].forEach(id => {
+        document.getElementById(id).classList.remove('is-invalid');
+      });
+
+      if (cur === '') {
+        document.getElementById('currentPassword').classList.add('is-invalid');
+        valid = false;
+      }
+      if (nPwd.length < 8) {
+        document.getElementById('newPassword').classList.add('is-invalid');
+        valid = false;
+      }
+      if (nPwd !== cPwd || cPwd === '') {
+        document.getElementById('confirmPassword').classList.add('is-invalid');
+        valid = false;
+      }
+
+      if (valid) {
+        ['currentPassword', 'newPassword', 'confirmPassword'].forEach(id => {
+          document.getElementById(id).value = '';
+        });
+        const fb = document.getElementById('passwordSaved');
+        fb.style.display = 'block';
+        setTimeout(() => { fb.style.display = 'none'; }, 4000);
+      }
+    });
+
+    // ── Delete Confirm Gate (enable button only when "DELETE" is typed) ──
+    document.getElementById('deleteConfirmText').addEventListener('input', function () {
+      const btn = document.getElementById('confirmDeleteBtn');
+      if (this.value.trim() === 'DELETE') {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      } else {
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+      }
+    });
+
+    // ── On Confirmed Delete: redirect to login ──
+    document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+      window.location.href = './login.html';
+    });
+
+    // ── Reset delete confirm text on modal close ──
+    document.getElementById('deleteAccountModal').addEventListener('hidden.bs.modal', function () {
+      document.getElementById('deleteConfirmText').value = '';
+      const btn = document.getElementById('confirmDeleteBtn');
+      btn.disabled = true;
+      btn.style.opacity = '0.5';
+    });
+  </script>
+
+  <!-- Admin Nav Toggle -->
+  <script src="../assets/js/admin-nav.js"></script>
+
+</body>
+
+</html>

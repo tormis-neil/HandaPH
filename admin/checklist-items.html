@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HandaPH Admin Checklist Items — Content Management System for managing emergency items.">
+  <title>HandaPH — Manage Checklist Items</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- HandaPH Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+
+<body>
+
+  <!-- ===== ADMIN WRAPPER ===== -->
+  <div class="admin-wrapper">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Admin sidebar">
+      <a href="./dashboard.html" class="sidebar-brand">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        Handa<span class="brand-accent">PH</span>
+      </a>
+      
+      <div class="sidebar-admin-label">Main Menu</div>
+      
+      <nav class="sidebar-nav" aria-label="Admin navigation">
+        <a href="./dashboard.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Analytics
+        </a>
+        <a href="./feedback-management.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-comments" aria-hidden="true"></i> Feedback Management
+        </a>
+        <a href="./checklist-items.html" class="sidebar-nav-link active" aria-current="page">
+          <i class="fa-solid fa-list-check" aria-hidden="true"></i> Checklist Items
+        </a>
+        <a href="./preparedness-tips.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Preparedness Tips
+        </a>
+      </nav>
+
+      <div class="sidebar-signout">
+        <a href="./login.html" class="sidebar-nav-link">
+          <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+    <!-- ===== END SIDEBAR ===== -->
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="admin-main">
+      
+      <!-- TOP BAR -->
+      <header class="admin-topbar">
+        <!-- Hamburger toggle (mobile only) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="adminSidebar">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <h2 class="topbar-title">Checklist Content</h2>
+        <div class="topbar-user">
+          <a href="./admin-account.html" class="topbar-user-link" aria-label="Admin account settings" style="display:flex;align-items:center;gap:0.5rem;font-size:var(--font-size-sm);color:var(--color-text-muted);text-decoration:none;border-radius:var(--radius-md);padding:4px 10px;transition:background-color var(--transition-fast),color var(--transition-fast);">
+            <i class="fa-solid fa-circle-user fs-5 text-primary" aria-hidden="true"></i>
+            <span class="d-none d-sm-inline fw-medium">Admin User</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- PAGE BODY -->
+      <div class="admin-body">
+        
+        <div class="admin-page-header">
+          <div>
+            <h1>Checklist Items</h1>
+            <p class="page-subtext">Add, edit, or remove preparedness items triggered by the logic engine.</p>
+          </div>
+          <!-- Add Item Button -->
+          <button class="btn btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#addItemModal">
+            <i class="fa-solid fa-plus me-1"></i> Add Item
+          </button>
+        </div>
+
+        <!-- STAT COUNTERS -->
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-value text-primary">28</div>
+            <div class="stat-label">Total Items Published</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value text-secondary">6</div>
+            <div class="stat-label">Registered Categories</div>
+          </div>
+        </div>
+
+        <!-- CHECKLIST ITEMS TABLE -->
+        <div class="admin-table-wrapper mb-5">
+          <table class="table admin-table mb-0" id="checklistTable" aria-label="CMS Items Registry">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 40%">Item Name</th>
+                <th scope="col">Category</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data Mocks -->
+              <tr>
+                <td>Stock up strictly on potable bottled water (1L/day/person) for three days.</td>
+                <td><span class="badge bg-primary bg-opacity-10 text-primary border border-primary-subtle">Food & Water</span></td>
+                <td class="text-end">
+                  <button class="btn-table-action btn-edit me-1" title="Edit Item" aria-label="Edit Item"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                  <button class="btn-table-action btn-delete" title="Delete Item" aria-label="Delete Item"><i class="fa-solid fa-trash-can"></i> Del</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Compile IDs, birth certificates, and physical cash inside sealed Ziploc bags.</td>
+                <td><span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary-subtle">Documents</span></td>
+                <td class="text-end">
+                  <button class="btn-table-action btn-edit me-1" title="Edit Item" aria-label="Edit Item"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                  <button class="btn-table-action btn-delete" title="Delete Item" aria-label="Delete Item"><i class="fa-solid fa-trash-can"></i> Del</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Infant formulas, extra diapers, and emergency child rash medications.</td>
+                <td><span class="badge bg-danger bg-opacity-10 text-danger border border-danger-subtle">Medical</span></td>
+                <td class="text-end">
+                  <button class="btn-table-action btn-edit me-1" title="Edit Item" aria-label="Edit Item"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                  <button class="btn-table-action btn-delete" title="Delete Item" aria-label="Delete Item"><i class="fa-solid fa-trash-can"></i> Del</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <!-- END PAGE BODY -->
+
+    </main>
+    <!-- ===== END MAIN CONTENT ===== -->
+
+  </div>
+  <!-- ===== END ADMIN WRAPPER ===== -->
+
+  <!-- Sidebar overlay backdrop (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <!-- ===== ADD ITEM MODAL ===== -->
+  <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg cms-form-panel p-0 mb-0"> <!-- Using cms-form-panel styling inside modal wrapper naturally -->
+        
+        <div class="modal-header border-bottom px-4 pt-4 pb-3">
+          <h2 class="h5 fw-bold text-primary mb-0" id="addItemModalLabel">Add Checklist Item</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close form"></button>
+        </div>
+        
+        <form action="#" method="get">
+          <div class="modal-body px-4 py-3">
+            
+            <div class="mb-3">
+              <label for="itemName" class="form-label fw-bold text-muted small">Item Name</label>
+              <input type="text" class="form-control form-control-sm" id="itemName" placeholder="E.g., Stock potable bottled water..." required>
+            </div>
+
+            <div class="mb-3">
+              <label for="itemCategory" class="form-label fw-bold text-muted small">Category</label>
+              <select class="form-select form-select-sm text-muted" id="itemCategory" required>
+                <option value="" selected disabled>Select Category</option>
+                <option value="Food & Water">Food & Water</option>
+                <option value="Documents">Documents</option>
+                <option value="Medical">Medical</option>
+                <option value="Tools">Tools</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="itemDesc" class="form-label fw-bold text-muted small">Description <span class="fw-normal">(Optional)</span></label>
+              <textarea class="form-control form-control-sm" id="itemDesc" rows="2" placeholder="Explain why this item is necessary..."></textarea>
+            </div>
+
+            <div class="mb-1">
+              <label for="itemBudget" class="form-label fw-bold text-muted small">Budget-Friendly Alternative <span class="fw-normal">(Optional)</span></label>
+              <textarea class="form-control form-control-sm" id="itemBudget" rows="2" placeholder="Provide a cheaper DIY option..."></textarea>
+            </div>
+
+          </div>
+          
+          <div class="modal-footer border-top px-4 py-3">
+            <button type="button" class="btn btn-outline-secondary fw-medium px-4" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary fw-medium px-4">Save Item</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <!-- ===== END ADD ITEM MODAL ===== -->
+
+  <!-- ===== EDIT ITEM MODAL ===== -->
+  <div class="modal fade" id="editItemModal" tabindex="-1" aria-labelledby="editItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header border-bottom px-4 pt-4 pb-3">
+          <h2 class="h5 fw-bold text-primary mb-0" id="editItemModalLabel">Edit Checklist Item</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body px-4 py-3">
+          <div class="mb-3">
+            <label for="editItemName" class="form-label fw-bold text-muted small">Item Name</label>
+            <input type="text" class="form-control form-control-sm" id="editItemName" required>
+          </div>
+          <div class="mb-1">
+            <label for="editItemCategory" class="form-label fw-bold text-muted small">Category</label>
+            <select class="form-select form-select-sm text-muted" id="editItemCategory" required>
+              <option value="Food & Water">Food &amp; Water</option>
+              <option value="Documents">Documents</option>
+              <option value="Medical">Medical</option>
+              <option value="Tools">Tools</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer border-top px-4 py-3">
+          <button type="button" class="btn btn-outline-secondary fw-medium px-4" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary fw-medium px-4" id="saveEditItemBtn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== END EDIT ITEM MODAL ===== -->
+
+  <!-- ===== DELETE ITEM CONFIRMATION MODAL ===== -->
+  <div class="modal fade" id="deleteItemModal" tabindex="-1" aria-labelledby="deleteItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header border-0 pt-4 px-4 pb-0">
+          <h2 class="h6 fw-bold mb-0" id="deleteItemModalLabel" style="color:#DC2626;"><i class="fa-solid fa-triangle-exclamation me-2"></i>Delete Item</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body px-4 py-3">
+          <p class="small text-muted mb-0">Are you sure you want to delete <strong id="deleteItemPreview">this item</strong>? This cannot be undone.</p>
+        </div>
+        <div class="modal-footer border-0 px-4 pb-4 pt-2">
+          <button type="button" class="btn btn-outline-secondary btn-sm fw-medium" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-sm fw-semibold px-4" id="confirmDeleteItemBtn" style="background-color:#DC2626;color:#fff;">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== END DELETE ITEM MODAL ===== -->
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    'use strict';
+
+    // ── Category badge colour map ──
+    const categoryBadge = {
+      'Food & Water': 'bg-primary bg-opacity-10 text-primary border border-primary-subtle',
+      'Documents':    'bg-secondary bg-opacity-10 text-secondary border border-secondary-subtle',
+      'Medical':      'bg-danger bg-opacity-10 text-danger border border-danger-subtle',
+      'Tools':        'bg-warning bg-opacity-10 text-warning border border-warning-subtle',
+      'Clothing':     'bg-success bg-opacity-10 text-success border border-success-subtle',
+      'Others':       'bg-dark bg-opacity-10 text-dark border border-dark-subtle'
+    };
+
+    let activeEditRow = null;
+    let activeDeleteRow = null;
+
+    const editModal   = new bootstrap.Modal(document.getElementById('editItemModal'));
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteItemModal'));
+
+    // ── Event delegation on table body ──
+    document.querySelector('#checklistTable tbody').addEventListener('click', function (e) {
+      const editBtn   = e.target.closest('.btn-edit');
+      const deleteBtn = e.target.closest('.btn-delete');
+
+      if (editBtn) {
+        const row = editBtn.closest('tr');
+        activeEditRow = row;
+        const itemName    = row.cells[0].textContent.trim();
+        const categoryTxt = row.cells[1].querySelector('.badge').dataset.category ||
+                            row.cells[1].querySelector('.badge').textContent.trim();
+        document.getElementById('editItemName').value = itemName;
+        // Match select option
+        const sel = document.getElementById('editItemCategory');
+        for (let opt of sel.options) {
+          if (opt.value === categoryTxt) { opt.selected = true; break; }
+        }
+        editModal.show();
+      }
+
+      if (deleteBtn) {
+        const row = deleteBtn.closest('tr');
+        activeDeleteRow = row;
+        const preview = row.cells[0].textContent.trim();
+        document.getElementById('deleteItemPreview').textContent =
+          preview.length > 60 ? preview.slice(0, 60) + '…' : preview;
+        deleteModal.show();
+      }
+    });
+
+    // ── Save edited item ──
+    document.getElementById('saveEditItemBtn').addEventListener('click', function () {
+      if (!activeEditRow) return;
+      const newName = document.getElementById('editItemName').value.trim();
+      const newCat  = document.getElementById('editItemCategory').value;
+      if (!newName) {
+        document.getElementById('editItemName').classList.add('is-invalid');
+        return;
+      }
+      document.getElementById('editItemName').classList.remove('is-invalid');
+      // Update row cells
+      activeEditRow.cells[0].textContent = newName;
+      const badge = activeEditRow.cells[1].querySelector('.badge');
+      badge.className = 'badge ' + (categoryBadge[newCat] || categoryBadge['Others']);
+      badge.textContent = newCat;
+      badge.dataset.category = newCat;
+      editModal.hide();
+      activeEditRow = null;
+    });
+
+    // ── Confirm delete ──
+    document.getElementById('confirmDeleteItemBtn').addEventListener('click', function () {
+      if (activeDeleteRow) {
+        activeDeleteRow.remove();
+        activeDeleteRow = null;
+      }
+      deleteModal.hide();
+    });
+
+    // Store category in badge dataset on load so edit reads it correctly
+    document.querySelectorAll('#checklistTable tbody .badge').forEach(badge => {
+      badge.dataset.category = badge.textContent.trim();
+    });
+  </script>
+
+  <!-- Admin Nav Toggle -->
+  <script src="../assets/js/admin-nav.js"></script>
+
+</body>
+</html>
