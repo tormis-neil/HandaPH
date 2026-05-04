@@ -12,7 +12,7 @@ This is the day-by-day execution guide. The original 14-day plan was compressed 
 
 | Day | Date | Phase | Status |
 |---|---|---|---|
-| 1 | May 4 (Mon) | Foundation + Static Pages | [ ] Not Started |
+| 1 | May 4 (Mon) | Foundation + Static Pages | [x] Done |
 | 2 | May 5 (Tue) | Schema + Auth | [ ] Not Started |
 | 3 | May 6 (Wed) | Public Checklist + Rule Engine | [ ] Not Started |
 | 4 | May 7 (Thu) | Public Feedback + Analytics + Admin Dashboard | [ ] Not Started |
