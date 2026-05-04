@@ -1,7 +1,7 @@
 # HandaPH — Backend Development Plan (Compressed 8-Day Schedule)
 
 **Companion to:** `handaph-backend-agreement.md`
-**Build window:** May 1 – May 8, 2026 (8 focused dev days) / May 12 (target) / May 15 (hard deadline)
+**Build window:** May 4 – May 11, 2026 (8 focused dev days) / May 12 (target) / May 15 (hard deadline)
 **Branch:** `claude/analyze-handaph-codebase-P6ixN`
 
 This is the day-by-day execution guide. The original 14-day plan was compressed to 8 dev days because the developer's actual focused-work window is shorter than calendar days. Each phase has a deliverable, files touched, and a testing checklist. Update the **Status** column as we go.
@@ -12,23 +12,22 @@ This is the day-by-day execution guide. The original 14-day plan was compressed 
 
 | Day | Date | Phase | Status |
 |---|---|---|---|
-| 1 | May 1 (Fri) | Foundation + Static Pages | [ ] Not Started |
-| 2 | May 2 (Sat) | Schema + Auth | [ ] Not Started |
-| 3 | May 3 (Sun) | Public Checklist + Rule Engine | [ ] Not Started |
-| 4 | May 4 (Mon) | Public Feedback + Analytics + Admin Dashboard | [ ] Not Started |
-| 5 | May 5 (Tue) | Admin Feedback Mgmt + Checklist Rules CRUD | [ ] Not Started |
-| 6 | May 6 (Wed) | Admin Tips CRUD + Go-Bag CRUD + Admin Account | [ ] Not Started |
-| 7 | May 7 (Thu) | Security Pass + Deploy to Railway | [ ] Not Started |
-| 8 | May 8 (Fri) | QA + Polish | [ ] Not Started |
-| Buffer | May 9–11 | Slippage absorption (do not schedule new work) | — |
+| 1 | May 4 (Mon) | Foundation + Static Pages | [ ] Not Started |
+| 2 | May 5 (Tue) | Schema + Auth | [ ] Not Started |
+| 3 | May 6 (Wed) | Public Checklist + Rule Engine | [ ] Not Started |
+| 4 | May 7 (Thu) | Public Feedback + Analytics + Admin Dashboard | [ ] Not Started |
+| 5 | May 8 (Fri) | Admin Feedback Mgmt + Checklist Rules CRUD | [ ] Not Started |
+| 6 | May 9 (Sat) | Admin Tips CRUD + Go-Bag CRUD + Admin Account | [ ] Not Started |
+| 7 | May 10 (Sun) | Security Pass + Deploy to Railway | [ ] Not Started |
+| 8 | May 11 (Mon) | QA + Polish | [ ] Not Started |
 | **Target** | **May 12 (Tue)** | **🎯 Final hand-off** | — |
-| Safety net | May 13–15 | Only if buffer was consumed | — |
+| Safety net | May 13–15 | Hard deadline buffer (May 15 is the absolute cutoff) | — |
 
 Status legend: `[ ] Not Started` → `[~] In Progress` → `[x] Done`
 
 ---
 
-## Day 1 — May 1 (Fri): Foundation + Static Pages
+## Day 1 — May 4 (Mon): Foundation + Static Pages
 
 **Goal:** Laravel boots locally, navbar/footer rendered through Blade, Home and Go-Bag pages live at their public routes.
 
@@ -61,7 +60,7 @@ Status legend: `[ ] Not Started` → `[~] In Progress` → `[x] Done`
 
 ---
 
-## Day 2 — May 2 (Sat): Schema + Auth ⚠️ HEAVIEST DAY
+## Day 2 — May 5 (Tue): Schema + Auth ⚠️ HEAVIEST DAY
 
 **Goal:** All 6 tables exist with seed data; admin login works; `/admin/*` is protected.
 
@@ -111,7 +110,7 @@ Status legend: `[ ] Not Started` → `[~] In Progress` → `[x] Done`
 
 ---
 
-## Day 3 — May 3 (Sun): Public Checklist + Rule Engine
+## Day 3 — May 6 (Wed): Public Checklist + Rule Engine
 
 **Goal:** Public users complete the survey, submission is logged, personalized results render from DB-driven rules.
 
@@ -142,7 +141,7 @@ End-to-end survey: user picks answers → clicks Generate → personalized list 
 
 ---
 
-## Day 4 — May 4 (Mon): Public Feedback + Analytics Endpoint + Admin Dashboard
+## Day 4 — May 7 (Thu): Public Feedback + Analytics Endpoint + Admin Dashboard
 
 **Goal:** Feedback submits to DB; analytics endpoint returns aggregated data; admin dashboard shows live charts.
 
@@ -185,7 +184,7 @@ End-to-end survey: user picks answers → clicks Generate → personalized list 
 
 ---
 
-## Day 5 — May 5 (Tue): Admin Feedback Management + Checklist Rules CRUD
+## Day 5 — May 8 (Fri): Admin Feedback Management + Checklist Rules CRUD
 
 **Goal:** Admin can browse/filter feedback; full CRUD on checklist rules works end-to-end.
 
@@ -220,7 +219,7 @@ End-to-end survey: user picks answers → clicks Generate → personalized list 
 
 ---
 
-## Day 6 — May 6 (Wed): Tips CRUD + Go-Bag CRUD + Admin Account
+## Day 6 — May 9 (Sat): Tips CRUD + Go-Bag CRUD + Admin Account
 
 **Goal:** Two more CMS surfaces and the admin profile page. This day should run under schedule because the patterns are reused from Day 5.
 
@@ -255,7 +254,7 @@ End-to-end survey: user picks answers → clicks Generate → personalized list 
 
 ---
 
-## Day 7 — May 7 (Thu): Security Pass + Deploy to Railway
+## Day 7 — May 10 (Sun): Security Pass + Deploy to Railway
 
 **Goal:** Application live on Railway with all 17 security items confirmed.
 
@@ -296,7 +295,7 @@ Live URL: `https://<subdomain>.up.railway.app`. All public and admin flows worki
 
 ---
 
-## Day 8 — May 8 (Fri): QA + Polish
+## Day 8 — May 11 (Mon): QA + Polish
 
 **Goal:** Production app is bug-free across browsers and devices.
 
@@ -317,21 +316,15 @@ Production site passes QA across all target devices and browsers; README updated
 
 ---
 
-## Days 9–11 — May 9–11: Buffer
-
-Reserved for slippage absorption. **Do not schedule new work.** If a day was lost earlier, this is where it gets recovered.
-
----
-
-## 🎯 Day 12 — May 12 (Tue): TARGET
+## 🎯 Day 9 — May 12 (Tue): TARGET
 
 Final hand-off. Application is complete, tested, deployed, documented.
 
 ---
 
-## Days 13–15 — May 13–15: Safety Net
+## Days 10–12 — May 13–15: Safety Net
 
-Used only if the May 9–11 buffer was fully consumed. Hard deadline is May 15.
+Used only if a day slipped during the build window (May 4–11). Hard deadline is May 15. **Do not schedule new work here.**
 
 ---
 
@@ -339,10 +332,10 @@ Used only if the May 9–11 buffer was fully consumed. Hard deadline is May 15.
 
 | Risk | Likelihood | Mitigation |
 |---|---|---|
-| Day 2 (schema + auth) spills into Day 3 | Medium-High | All code blocks sent pre-ordered; if it spills, take from the May 9–11 buffer immediately |
+| Day 2 (schema + auth) spills into Day 3 | Medium-High | All code blocks sent pre-ordered; if it spills, take from the May 13–15 safety net immediately |
 | Day 4 (3 features) breaks one of the three | Medium | Build feedback first (simplest), then analytics endpoint, then dashboard |
 | Day 5 rules CRUD takes longer than expected | Medium | Keep multi-selects as plain checkboxes; no fancy widgets |
-| Railway deploy fails on Day 7 | Medium | Trial deploy on Wed evening if Day 6 finishes early |
+| Railway deploy fails on Day 7 (May 10) | Medium | Trial deploy on Day 6 (May 9) evening if it finishes early |
 | Railway free credit exhausted | Low | Monitor usage daily after Day 7 |
 | Scope creep | High | Reject everything outside `handaph-backend-agreement.md` §10 |
 | Visual regression after Blade migration | Medium | Day 1 visual diff; preserve all class names exactly |

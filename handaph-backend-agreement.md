@@ -1,7 +1,7 @@
 # HandaPH — Backend Development Agreement
 
 **Document type:** Locked-in decisions agreed between developer and project owner
-**Date locked:** April 30, 2026
+**Date locked:** May 4, 2026
 **Branch:** `claude/analyze-handaph-codebase-P6ixN`
 
 This document captures every decision agreed upon during the backend planning conversation. It is the single source of truth for what is being built. Any change to the items below requires a new agreement and an update to this file.
@@ -199,13 +199,13 @@ Deployment steps (executed on Day 12 of the build plan):
 
 | Milestone | Date |
 |---|---|
-| Backend planning locked | April 30, 2026 |
-| Build start (Day 1) | April 30, 2026 |
-| **Target completion (core features tested)** | **May 11, 2026** |
-| Acceptable completion window | May 11–13, 2026 |
+| Backend planning locked | May 4, 2026 |
+| Build start (Day 1) | May 4, 2026 |
+| **Build complete (8 dev days)** | **May 11, 2026** |
+| **Target completion (final hand-off)** | **May 12, 2026** |
 | **Hard deadline** | **May 15, 2026** |
 
-The 2–4 day buffer between target and hard deadline is reserved for QA, bug fixes, and unexpected deployment issues. The buffer is non-negotiable; we do not eat into it for new features.
+The 3-day window between target (May 12) and hard deadline (May 15) is the safety net for slippage. It is non-negotiable; we do not eat into it for new features.
 
 ---
 
