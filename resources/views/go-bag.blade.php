@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('title', 'HandaPH — Emergency Go-Bag Guide')
 @section('description', 'A visual, tabbed guide for packing an emergency Go-Bag so you can evacuate quickly.')

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('title', 'HandaPH — Be Ready Before the Storm')
 @section('description', 'HandaPH — A personalized typhoon preparedness system that helps Filipino families build their Go-Bag and action plan before, during, and after a storm.')
