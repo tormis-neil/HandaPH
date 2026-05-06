@@ -38,7 +38,7 @@
                 <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Checklist</a>
+                <a class="nav-link {{ request()->routeIs('checklist*') ? 'active' : '' }}" href="{{ route('checklist') }}">Checklist</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('go-bag') ? 'active' : '' }}" href="{{ route('go-bag') }}">Go-Bag</a>
@@ -72,7 +72,7 @@
             <h2 class="footer-heading">Quick Links</h2>
             <nav class="footer-links" aria-label="Footer quick links">
               <a href="{{ route('home') }}">Home</a>
-              <a href="#">Checklist</a>
+              <<a href="{{ route('checklist') }}">Checklist</a>
               <a href="{{ route('go-bag') }}">Go-Bag</a>
               <a href="#">Feedback</a>
             </nav>
