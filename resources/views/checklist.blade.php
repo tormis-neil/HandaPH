@@ -300,7 +300,7 @@
           <h3 class="feedback-cta-title">How was your experience?</h3>
           <p class="feedback-cta-text">Help us improve HandaPH for every Filipino family.</p>
         </div>
-        <a href="#" class="btn btn-primary">
+        <a href="{{ route('feedback') }}" class="btn btn-primary">
           <i class="fa-solid fa-star"></i> Give Feedback
         </a>
       </div>

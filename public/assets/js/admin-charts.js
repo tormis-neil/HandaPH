@@ -1,162 +1,130 @@
 'use strict';
 
-/**
- * Admin Dashboard Charts Integration
- * Built using Chart.js to map incoming queries and metric feedback.
- * Currently uses placeholder data awaiting PHP/MySQL integration.
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Chart.js default brand token mappings based on style.css
-  const colorPrimary = '#1E293B';    // Slate Navy
-  const colorSecondary = '#EA580C';  // Safety Orange
-  const colorMuted = '#64748B';      // Muted label
-  const colorDanger = '#DC2626';     // Emergency label red
-  const colorSuccess = '#16A34A';    // Success green tint
+  const colorPrimary   = '#1E293B';
+  const colorSecondary = '#EA580C';
+  const colorMuted     = '#64748B';
+  const colorDanger    = '#DC2626';
+  const colorSuccess   = '#16A34A';
 
-  // Chart defaults for aesthetic spacing and modern styling
   Chart.defaults.font.family = "'Inter', 'Roboto', sans-serif";
   Chart.defaults.color = colorMuted;
   Chart.defaults.plugins.tooltip.padding = 10;
   Chart.defaults.plugins.tooltip.cornerRadius = 8;
-  
-  // -------------------------------------------------------------
-  // 1. Location Type (Area / Line Chart)
-  // -------------------------------------------------------------
-  const ctxLocation = document.getElementById('locationChart');
-  if (ctxLocation) {
-    new Chart(ctxLocation, {
-      type: 'line',
+
+  const meta = document.querySelector('meta[name="analytics-url"]');
+  if (!meta) return;
+  const url = meta.getAttribute('content');
+
+  fetch(url, { credentials: 'same-origin', headers: { 'Accept': 'application/json' } })
+    .then((r) => {
+      if (!r.ok) throw new Error('Analytics request failed: ' + r.status);
+      return r.json();
+    })
+    .then((data) => {
+      buildLocationChart(data.location);
+      buildHouseholdSizeChart(data.household_size);
+      buildSpecialNeedsChart(data.special_needs);
+      buildHouseTypeChart(data.house_type);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  function buildLocationChart(d) {
+    const ctx = document.getElementById('locationChart');
+    if (!ctx) return;
+    new Chart(ctx, {
+      type: 'bar',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        labels: ['Coastal', 'Mountainous', 'Inland', 'Flood-Prone'],
         datasets: [{
-          label: 'Coastal',
-          data: [120, 190, 300, 350, 420, 480],
-          borderColor: colorSecondary,
-          backgroundColor: 'rgba(234, 88, 12, 0.1)',
-          fill: true,
-          tension: 0.4,
-          borderWidth: 2
-        },
-        {
-          label: 'Flood-Prone',
-          data: [200, 250, 320, 410, 500, 580],
-          borderColor: colorPrimary,
-          backgroundColor: 'rgba(30, 41, 59, 0.1)',
-          fill: true,
-          tension: 0.4,
-          borderWidth: 2
-        }]
+          label: 'Submissions',
+          data: [d['coastal'], d['mountainous'], d['inland'], d['flood-prone']],
+          backgroundColor: [colorSecondary, colorPrimary, '#3B82F6', colorDanger],
+          borderRadius: 4,
+        }],
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'bottom' }
-        },
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
         scales: {
           y: { beginAtZero: true, grid: { borderDash: [4, 4] } },
-          x: { grid: { display: false } }
-        }
-      }
+          x: { grid: { display: false } },
+        },
+      },
     });
   }
 
-  // -------------------------------------------------------------
-  // 2. Household Size (Donut Chart)
-  // -------------------------------------------------------------
-  const ctxHousehold = document.getElementById('householdSizeChart');
-  if (ctxHousehold) {
-    new Chart(ctxHousehold, {
+  function buildHouseholdSizeChart(d) {
+    const ctx = document.getElementById('householdSizeChart');
+    if (!ctx) return;
+    new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: ['1 Person', '2-4 People', '5-7 People', '8 or more'],
         datasets: [{
-          data: [15, 45, 30, 10],
-          backgroundColor: [
-            '#94A3B8',       // slate-400
-            colorPrimary,    // Slate Navy
-            colorSecondary,  // Safety Orange
-            colorDanger      // Emergency Red
-          ],
+          data: [d['1'], d['2-4'], d['5-7'], d['8-plus']],
+          backgroundColor: ['#94A3B8', colorPrimary, colorSecondary, colorDanger],
           borderWidth: 0,
-          hoverOffset: 4
-        }]
+          hoverOffset: 4,
+        }],
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '70%',
-        plugins: {
-          legend: { position: 'bottom', labels: { boxWidth: 12 } }
-        }
-      }
+        responsive: true, maintainAspectRatio: false, cutout: '70%',
+        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } } },
+      },
     });
   }
 
-  // -------------------------------------------------------------
-  // 3. Special Household Needs (Bar Chart)
-  // -------------------------------------------------------------
-  const ctxNeeds = document.getElementById('specialNeedsChart');
-  if (ctxNeeds) {
-    new Chart(ctxNeeds, {
+  function buildSpecialNeedsChart(d) {
+    const ctx = document.getElementById('specialNeedsChart');
+    if (!ctx) return;
+    new Chart(ctx, {
       type: 'bar',
       data: {
         labels: ['Children', 'Seniors', 'PWDs', 'Pets'],
         datasets: [{
           label: 'Count',
-          data: [450, 280, 110, 520],
-          backgroundColor: [
-            colorPrimary,
-            '#3B82F6', // Blue
-            colorSuccess,
-            colorSecondary
-          ],
-          borderRadius: 4
-        }]
+          data: [d['children'], d['seniors'], d['pwd'], d['pets']],
+          backgroundColor: [colorPrimary, '#3B82F6', colorSuccess, colorSecondary],
+          borderRadius: 4,
+        }],
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false }
-        },
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
         scales: {
           y: { beginAtZero: true, grid: { borderDash: [4, 4] } },
-          x: { grid: { display: false } }
-        }
-      }
+          x: { grid: { display: false } },
+        },
+      },
     });
   }
 
-  // -------------------------------------------------------------
-  // 4. House Type Distribution (Horizontal Bar Chart)
-  // -------------------------------------------------------------
-  const ctxHouseType = document.getElementById('houseTypeChart');
-  if (ctxHouseType) {
-    new Chart(ctxHouseType, {
-      type: 'bar', // Horizontal bar in Chart.js v3+ uses 'indexAxis: y'
+  function buildHouseTypeChart(d) {
+    const ctx = document.getElementById('houseTypeChart');
+    if (!ctx) return;
+    new Chart(ctx, {
+      type: 'bar',
       data: {
         labels: ['Light Materials', 'Semi-Concrete', 'Concrete'],
         datasets: [{
           label: 'Submissions',
-          data: [320, 540, 890],
+          data: [d['light'], d['semi-concrete'], d['concrete']],
           backgroundColor: colorPrimary,
-          borderRadius: 4
-        }]
+          borderRadius: 4,
+        }],
       },
       options: {
         indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false }
-        },
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
         scales: {
           x: { beginAtZero: true, grid: { borderDash: [4, 4] } },
-          y: { grid: { display: false } }
-        }
-      }
+          y: { grid: { display: false } },
+        },
+      },
     });
   }
 });

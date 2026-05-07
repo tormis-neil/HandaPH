@@ -44,7 +44,7 @@
                 <a class="nav-link {{ request()->routeIs('go-bag') ? 'active' : '' }}" href="{{ route('go-bag') }}">Go-Bag</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Feedback</a>
+                <a class="nav-link {{ request()->routeIs('feedback*') ? 'active' : '' }}" href="{{ route('feedback') }}">Feedback</a>
               </li>
             </ul>
           </div>
@@ -74,7 +74,7 @@
               <a href="{{ route('home') }}">Home</a>
               <<a href="{{ route('checklist') }}">Checklist</a>
               <a href="{{ route('go-bag') }}">Go-Bag</a>
-              <a href="#">Feedback</a>
+              <a href="{{ route('feedback') }}">Feedback</a>
             </nav>
           </div>
           <div class="col-6 col-md-3 mb-4 mb-md-0">

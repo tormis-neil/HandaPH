@@ -32,7 +32,7 @@
       <div class="sidebar-admin-label">Main Menu</div>
 
       <nav class="sidebar-nav" aria-label="Admin navigation">
-        <a href="#" class="sidebar-nav-link">
+        <a href="{{ route('admin.dashboard') }}" class="sidebar-nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" aria-current="{{ request()->routeIs('admin.dashboard') ? 'page' : 'false' }}">
           <i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Analytics
         </a>
         <a href="#" class="sidebar-nav-link">
@@ -50,9 +50,12 @@
       </nav>
 
       <div class="sidebar-signout">
-        <a href="#" class="sidebar-nav-link">
+        <form action="{{ route('logout') }}" method="POST" class="sidebar-signout-form">
+          @csrf
+          <button type="submit" class="sidebar-nav-link" style="background:none;border:none;width:100%;text-align:left;cursor:pointer;">
           <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Sign Out
-        </a>
+        </button>
+      </form>
       </div>
     </aside>
 
