@@ -41,10 +41,10 @@
         <a href="{{ route('admin.checklist-rules.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.checklist-rules.*') ? 'active' : '' }}">
           <i class="fa-solid fa-list-check" aria-hidden="true"></i> Checklist Rules
         </a>
-        <a href="#" class="sidebar-nav-link">
+        <a href="{{ route('admin.tips.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.tips.*') ? 'active' : '' }}">
           <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Preparedness Tips
         </a>
-        <a href="#" class="sidebar-nav-link">
+        <a href="{{ route('admin.go-bag-items.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.go-bag-items.*') ? 'active' : '' }}">
           <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i> Go-Bag Items
         </a>
       </nav>
@@ -69,9 +69,9 @@
         </button>
         <h2 class="topbar-title">@yield('topbar_title', 'Overview')</h2>
         <div class="topbar-user">
-          <a href="#" class="topbar-user-link" aria-label="Admin account settings">
+          <a href="{{ route('admin.account') }}" class="topbar-user-link {{ request()->routeIs('admin.account') ? 'active-user' : '' }}" aria-label="Admin account settings" style="display:flex;align-items:center;gap:0.5rem;font-size:var(--font-size-sm);color:var(--color-text-muted);text-decoration:none;border-radius:var(--radius-md);padding:4px 10px;transition:background-color var(--transition-fast),color var(--transition-fast);">
             <i class="fa-solid fa-circle-user fs-5 text-primary" aria-hidden="true"></i>
-            <span class="d-none d-sm-inline fw-medium">Admin User</span>
+            <span class="d-none d-sm-inline fw-medium">{{ auth()->user()->name ?? 'Admin User' }}</span>
           </a>
         </div>
       </header>

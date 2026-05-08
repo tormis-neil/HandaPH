@@ -73,15 +73,21 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
           <!-- Pills -->
           <ul class="nav nav-pills gobag-nav-pills" id="gobagPills" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="pills-essentials-tab" data-bs-toggle="pill" data-bs-target="#pills-essentials" type="button" role="tab" aria-controls="pills-essentials" aria-selected="true">Essentials</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-recommended-tab" data-bs-toggle="pill" data-bs-target="#pills-recommended" type="button" role="tab" aria-controls="pills-recommended" aria-selected="false">Recommended</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-optional-tab" data-bs-toggle="pill" data-bs-target="#pills-optional" type="button" role="tab" aria-controls="pills-optional" aria-selected="false">Optional</button>
-            </li>
+            @forelse($categories as $categoryName => $items)
+              <li class="nav-item" role="presentation">
+                <button class="nav-link {{ $loop->first ? 'active' : '' }}" 
+                  id="pills-{{ Str::slug($categoryName) }}-tab" 
+                  data-bs-toggle="pill" 
+                  data-bs-target="#pills-{{ Str::slug($categoryName) }}" 
+                  type="button" role="tab" aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                  {{ $categoryName }}
+                </button>
+              </li>
+            @empty
+              <li class="nav-item">
+                <button class="nav-link active">No Categories</button>
+              </li>
+            @endforelse
           </ul>
 
           <button class="btn btn-dark-navy" type="button" onclick="window.print()">
@@ -90,140 +96,37 @@
         </div>
 
         <div class="tab-content" id="gobagPillsContent">
-          <!-- ESSENTIALS TAB -->
-          <div class="tab-pane fade show active" id="pills-essentials" role="tabpanel" aria-labelledby="pills-essentials-tab" tabindex="0">
-            <div class="row g-3">
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-bottle-water"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Drinking Water</h4>
-                    <p>1 liter per person, per day (for 3 days).</p>
+          @forelse($categories as $categoryName => $items)
+            <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" 
+              id="pills-{{ Str::slug($categoryName) }}" 
+              role="tabpanel" 
+              aria-labelledby="pills-{{ Str::slug($categoryName) }}-tab" tabindex="0">
+              <div class="row g-3">
+                @foreach($items as $item)
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="gobag-item-card h-100 d-flex flex-column">
+                      <div class="gobag-item-icon mb-3"><i class="fa-solid fa-box text-primary fs-3"></i></div>
+                      <div class="gobag-item-content flex-grow-1">
+                        <h4 class="mb-2">{{ $item->name }}</h4>
+                        <p class="mb-0 text-muted">{{ $item->description }}</p>
+                      </div>
+                      @if($item->budget_alternative)
+                        <div class="mt-3 pt-3 border-top small">
+                          <span class="text-success fw-bold"><i class="fa-solid fa-piggy-bank me-1"></i> Budget Alt:</span>
+                          <span class="text-muted">{{ $item->budget_alternative }}</span>
+                        </div>
+                      @endif
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-utensils"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Non-Perishable Food</h4>
-                    <p>Easy-to-open canned goods, biscuits, or MREs.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-kit-medical"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>First Aid Kit & Meds</h4>
-                    <p>Bandages, alcohol, and prescription medicines.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-folder-open"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Important Documents</h4>
-                    <p>Copies of IDs, birth certificates in a sealed pouch.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-flashlight"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Flashlight & Batteries</h4>
-                    <p>Keeps you visible and helps navigation at night.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-wind"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Whistle</h4>
-                    <p>Used to signal rescuers safely if trapped nearby.</p>
-                  </div>
-                </div>
+                @endforeach
               </div>
             </div>
-          </div>
-
-          <!-- RECOMMENDED TAB -->
-          <div class="tab-pane fade" id="pills-recommended" role="tabpanel" aria-labelledby="pills-recommended-tab" tabindex="0">
-            <div class="row g-3">
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-battery-full"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Power Bank</h4>
-                    <p>Keep your mobile devices charged for critical updates.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-shirt"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Change of Clothes</h4>
-                    <p>Clean undergarments and a warm outer layer.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Extra Cash</h4>
-                    <p>Small bills or coins in case ATMs are fully down.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-radio"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Battery-Powered Radio</h4>
-                    <p>Access emergency broadcasts manually.</p>
-                  </div>
-                </div>
-              </div>
+          @empty
+            <div class="text-center py-5">
+              <i class="fa-solid fa-backpack text-muted fa-3x mb-3 opacity-50"></i>
+              <p class="text-muted fw-medium">Check back soon! We are packing our recommended Go-Bag items.</p>
             </div>
-          </div>
-
-          <!-- OPTIONAL TAB -->
-          <div class="tab-pane fade" id="pills-optional" role="tabpanel" aria-labelledby="pills-optional-tab" tabindex="0">
-            <div class="row g-3">
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-box"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>DIY Waterproof Pouches</h4>
-                    <p>Cheap Ziploc bags or secure trash bags to guard electronics.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-recycle"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Recycled Containers</h4>
-                    <p>Used soda bottles refilled with drinking water.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="gobag-item-card">
-                  <div class="gobag-item-icon"><i class="fa-solid fa-bed"></i></div>
-                  <div class="gobag-item-content">
-                    <h4>Extra Comfort Items</h4>
-                    <p>Minimal blankets or a stuffed toy for younger kids.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          @endforelse
         </div>
       </section>
 
@@ -233,7 +136,7 @@
           <div class="feedback-cta-inner text-center py-5 bg-white border rounded shadow-sm">
             <h3 class="feedback-cta-title mb-2">How was your experience?</h3>
             <p class="feedback-cta-text mb-4 text-muted">Help us improve HandaPH for every Filipino family.</p>
-            <a href="./feedback.html" class="btn btn-primary btn-lg">
+            <a href="{{ route('feedback') }}" class="btn btn-primary btn-lg">
               <i class="fa-solid fa-star me-2" aria-hidden="true"></i>
               Give Feedback
             </a>
