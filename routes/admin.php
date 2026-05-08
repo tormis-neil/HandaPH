@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\ChecklistRuleController;
+use App\Http\Controllers\Admin\FeedbackController;
 use App\Models\Feedback;
 use App\Models\PreparednessTip;
 use App\Models\SurveySubmission;
@@ -17,4 +19,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/api/analytics', [AnalyticsController::class, 'summary'])
         ->name('api.analytics');
+
+    Route::get('/feedback', [FeedbackController::class, 'index'])
+        ->name('feedback');
+
+    // Register all 4 CRUD routes (index, store, update, destroy)
+    Route::resource('checklist-rules', ChecklistRuleController::class)
+        ->except(['create', 'show', 'edit'])
+        ->parameters(['checklist-rules' => 'checklistRule']);
 });

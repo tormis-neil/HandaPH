@@ -35,10 +35,10 @@
         <a href="{{ route('admin.dashboard') }}" class="sidebar-nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" aria-current="{{ request()->routeIs('admin.dashboard') ? 'page' : 'false' }}">
           <i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Analytics
         </a>
-        <a href="#" class="sidebar-nav-link">
+        <a href="{{ route('admin.feedback') }}" class="sidebar-nav-link {{ request()->routeIs('admin.feedback') ? 'active' : '' }}">
           <i class="fa-solid fa-comments" aria-hidden="true"></i> Feedback Management
         </a>
-        <a href="#" class="sidebar-nav-link">
+        <a href="{{ route('admin.checklist-rules.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.checklist-rules.*') ? 'active' : '' }}">
           <i class="fa-solid fa-list-check" aria-hidden="true"></i> Checklist Rules
         </a>
         <a href="#" class="sidebar-nav-link">
