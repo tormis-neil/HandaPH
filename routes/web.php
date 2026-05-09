@@ -4,7 +4,10 @@ use App\Http\Controllers\ChecklistController;
 use App\Http\Controllers\FeedbackController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'home')->name('home');
+Route::get('/', function () {
+    $myths = \App\Models\TyphoonMyth::where('is_active', true)->get();
+    return view('home', compact('myths'));
+})->name('home');
 
 Route::get('/go-bag', function () {
     $categories = \App\Models\GoBagItem::where('is_active', true)

@@ -4,8 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePreparednessTipRequest extends FormRequest
+class StoreTyphoonMythRequest extends FormRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     */
     public function authorize(): bool
     {
         return true;
@@ -21,10 +24,9 @@ class StorePreparednessTipRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'logic_id' => ['required', 'string', 'max:255', 'unique:preparedness_tips,logic_id'],
-            'title' => ['required', 'string', 'max:255'],
-            'content' => ['required', 'string'],
-            'tag' => ['required', 'in:before,during,after'],
+            'myth' => ['required', 'string'],
+            'fact' => ['required', 'string'],
+            'action' => ['required', 'string'],
             'is_active' => ['boolean'],
         ];
     }

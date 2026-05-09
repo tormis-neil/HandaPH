@@ -120,11 +120,9 @@
             <label class="form-label fw-bold text-muted small">Category</label>
             <select name="category" class="form-select form-select-sm text-muted fw-medium" required>
               <option value="" selected disabled>Select category</option>
-              <option value="Water & Food">Water & Food</option>
-              <option value="First Aid & Health">First Aid & Health</option>
-              <option value="Tools & Supplies">Tools & Supplies</option>
-              <option value="Documents & Money">Documents & Money</option>
-              <option value="Clothing & Warmth">Clothing & Warmth</option>
+              <option value="essentials">Essentials</option>
+              <option value="recommended">Recommended</option>
+              <option value="optional">Optional</option>
             </select>
           </div>
           <div class="mb-3">
@@ -168,11 +166,9 @@
           <div class="mb-3">
             <label class="form-label fw-bold text-muted small">Category</label>
             <select name="category" id="edit_category" class="form-select form-select-sm text-muted fw-medium" required>
-              <option value="Water & Food">Water & Food</option>
-              <option value="First Aid & Health">First Aid & Health</option>
-              <option value="Tools & Supplies">Tools & Supplies</option>
-              <option value="Documents & Money">Documents & Money</option>
-              <option value="Clothing & Warmth">Clothing & Warmth</option>
+              <option value="essentials">Essentials</option>
+              <option value="recommended">Recommended</option>
+              <option value="optional">Optional</option>
             </select>
           </div>
           <div class="mb-3">

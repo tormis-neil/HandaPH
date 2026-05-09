@@ -5,9 +5,9 @@ use App\Http\Controllers\Admin\GoBagItemController;
 use App\Http\Controllers\Admin\AnalyticsController;
 use App\Http\Controllers\Admin\ChecklistRuleController;
 use App\Http\Controllers\Admin\FeedbackController;
-use App\Http\Controllers\Admin\PreparednessTipController;
+use App\Http\Controllers\Admin\TyphoonMythController;
 use App\Models\Feedback;
-use App\Models\PreparednessTip;
+use App\Models\TyphoonMyth;
 use App\Models\SurveySubmission;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +16,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         return view('admin.dashboard', [
             'totalQueries' => SurveySubmission::count(),
             'totalFeedback' => Feedback::count(),
-            'activeTips' => PreparednessTip::where('is_active', true)->count(),
+            'activeTips' => TyphoonMyth::where('is_active', true)->count(),
         ]);
     })->name('dashboard');
 
@@ -30,10 +30,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ->except(['create', 'show', 'edit'])
         ->parameters(['checklist-rules' => 'checklistRule']);
 
-    // Register all 4 CRUD routes for Preparedness Tips
-    Route::resource('tips', PreparednessTipController::class)
+    // Register all 4 CRUD routes for Typhoon Myths
+    Route::resource('typhoon-myths', TyphoonMythController::class)
         ->except(['create', 'show', 'edit'])
-        ->parameters(['tips' => 'preparednessTip']);
+        ->parameters(['typhoon-myths' => 'typhoonMyth']);
 
     // Register all 4 CRUD routes for Go-Bag items
     Route::resource('go-bag-items', GoBagItemController::class)

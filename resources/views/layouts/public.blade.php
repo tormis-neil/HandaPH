@@ -72,7 +72,7 @@
             <h2 class="footer-heading">Quick Links</h2>
             <nav class="footer-links" aria-label="Footer quick links">
               <a href="{{ route('home') }}">Home</a>
-              <<a href="{{ route('checklist') }}">Checklist</a>
+              <a href="{{ route('checklist') }}">Checklist</a>
               <a href="{{ route('go-bag') }}">Go-Bag</a>
               <a href="{{ route('feedback') }}">Feedback</a>
             </nav>

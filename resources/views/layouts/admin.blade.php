@@ -41,8 +41,8 @@
         <a href="{{ route('admin.checklist-rules.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.checklist-rules.*') ? 'active' : '' }}">
           <i class="fa-solid fa-list-check" aria-hidden="true"></i> Checklist Rules
         </a>
-        <a href="{{ route('admin.tips.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.tips.*') ? 'active' : '' }}">
-          <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Preparedness Tips
+        <a href="{{ route('admin.typhoon-myths.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.typhoon-myths.*') ? 'active' : '' }}">
+          <i class="fa-solid fa-cloud-bolt" aria-hidden="true"></i> Typhoon Myths
         </a>
         <a href="{{ route('admin.go-bag-items.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.go-bag-items.*') ? 'active' : '' }}">
           <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i> Go-Bag Items

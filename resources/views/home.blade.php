@@ -50,7 +50,7 @@
               </div>
 
               <!-- CTA Button -->
-              <a href="./pages/checklist.html" class="btn btn-primary btn-hero">
+              <a href="{{ route('checklist') }}" class="btn btn-primary btn-hero">
                 <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
                 Generate Your Plan
               </a>
@@ -151,7 +151,7 @@
                   Answer 4 quick questions about your household and get a tailored
                   preparedness plan for Before, During, and After the storm.
                 </p>
-                <a href="./pages/checklist.html" class="feature-card-link" aria-label="Go to Personalized Checklist">
+                <a href="{{ route('checklist') }}" class="feature-card-link" aria-label="Go to Personalized Checklist">
                   Start checklist <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
               </article>
@@ -168,7 +168,7 @@
                   Learn exactly what to pack in your emergency bag — Essentials,
                   Recommended items, and budget-friendly alternatives.
                 </p>
-                <a href="./pages/go-bag.html" class="feature-card-link" aria-label="Go to Go-Bag Guide">
+                <a href="{{ route('go-bag') }}" class="feature-card-link" aria-label="Go to Go-Bag Guide">
                   View guide <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
               </article>
@@ -185,7 +185,7 @@
                   Help us improve HandaPH by rating your experience and sharing
                   suggestions. Your input shapes future updates.
                 </p>
-                <a href="./pages/feedback.html" class="feature-card-link" aria-label="Go to Feedback page">
+                <a href="{{ route('feedback') }}" class="feature-card-link" aria-label="Go to Feedback page">
                   Give feedback <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
               </article>
@@ -202,7 +202,7 @@
                   Save your personalized checklist as a PDF for offline access.
                   Works even when power and internet are out.
                 </p>
-                <a href="./pages/checklist.html" class="feature-card-link" aria-label="Generate and download your checklist">
+                <a href="{{ route('checklist') }}" class="feature-card-link" aria-label="Generate and download your checklist">
                   Get your PDF <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
               </article>
@@ -265,7 +265,7 @@
           </div>
 
           <div class="text-center mt-5">
-            <a href="./pages/checklist.html" class="btn btn-primary btn-lg px-5">
+            <a href="{{ route('checklist') }}" class="btn btn-primary btn-lg px-5">
               <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
               Start Your Plan Now
             </a>
@@ -289,150 +289,35 @@
 
           <div class="accordion myths-accordion" id="mythsAccordion">
 
-            <!-- Myth 1 -->
+            @forelse($myths as $index => $myth)
+            <!-- Myth {{ $index + 1 }} -->
             <div class="accordion-item myth-item">
               <h3 class="accordion-header">
                 <button class="accordion-button myth-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#myth1"
-                  aria-expanded="false" aria-controls="myth1">
+                  data-bs-toggle="collapse" data-bs-target="#myth{{ $myth->id }}"
+                  aria-expanded="false" aria-controls="myth{{ $myth->id }}">
                   <span class="myth-label" aria-label="Myth">MYTH</span>
-                  "I live in a concrete house, so I'm safe during any typhoon."
+                  "{{ $myth->myth }}"
                 </button>
               </h3>
-              <div id="myth1" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
+              <div id="myth{{ $myth->id }}" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
                 <div class="accordion-body myth-body">
                   <div class="myth-fact-label">
                     <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                     The Fact
                   </div>
                   <p>
-                    Concrete structures can still be severely damaged by strong winds, flooding, and storm surges.
-                    Super Typhoon Yolanda (2013) destroyed concrete buildings in coastal areas of Eastern Visayas.
-                    House material reduces risk but does not eliminate it — especially in flood-prone and coastal zones.
+                    {{ $myth->fact }}
                   </p>
                   <p class="myth-action">
-                    <strong>What to do:</strong> Know your storm surge and flood risk zone regardless of your
-                    house material. Always follow evacuation orders from your LGU.
+                    <strong>What to do:</strong> {{ $myth->action }}
                   </p>
                 </div>
               </div>
             </div>
-
-            <!-- Myth 2 -->
-            <div class="accordion-item myth-item">
-              <h3 class="accordion-header">
-                <button class="accordion-button myth-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#myth2"
-                  aria-expanded="false" aria-controls="myth2">
-                  <span class="myth-label" aria-label="Myth">MYTH</span>
-                  "I can just prepare when the typhoon signal is raised."
-                </button>
-              </h3>
-              <div id="myth2" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
-                <div class="accordion-body myth-body">
-                  <div class="myth-fact-label">
-                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-                    The Fact
-                  </div>
-                  <p>
-                    Once a signal is raised, stores close quickly, roads congest, and supplies run out within hours.
-                    Only 27% of Filipino households have a prepared Go-Bag at any given time. Waiting until the
-                    last minute is one of the leading causes of preventable typhoon-related casualties.
-                  </p>
-                  <p class="myth-action">
-                    <strong>What to do:</strong> Build your Go-Bag now — before any typhoon is announced.
-                    Replenish it after every typhoon season.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Myth 3 -->
-            <div class="accordion-item myth-item">
-              <h3 class="accordion-header">
-                <button class="accordion-button myth-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#myth3"
-                  aria-expanded="false" aria-controls="myth3">
-                  <span class="myth-label" aria-label="Myth">MYTH</span>
-                  "Opening windows equalizes pressure and prevents damage."
-                </button>
-              </h3>
-              <div id="myth3" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
-                <div class="accordion-body myth-body">
-                  <div class="myth-fact-label">
-                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-                    The Fact
-                  </div>
-                  <p>
-                    This is false and dangerous. Opening windows allows wind, rain, and flying debris to enter
-                    directly — increasing injury risk and structural damage. Pressure differences during a typhoon
-                    are caused by the storm system itself, not sealed windows.
-                  </p>
-                  <p class="myth-action">
-                    <strong>What to do:</strong> Keep all windows and doors closed and sealed during a typhoon.
-                    Reinforce with tape or boards before the storm arrives.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Myth 4 -->
-            <div class="accordion-item myth-item">
-              <h3 class="accordion-header">
-                <button class="accordion-button myth-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#myth4"
-                  aria-expanded="false" aria-controls="myth4">
-                  <span class="myth-label" aria-label="Myth">MYTH</span>
-                  "The eye of the typhoon means the storm is over — it's safe to go out."
-                </button>
-              </h3>
-              <div id="myth4" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
-                <div class="accordion-body myth-body">
-                  <div class="myth-fact-label">
-                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-                    The Fact
-                  </div>
-                  <p>
-                    The calm at the eye is temporary. The eyewall — the most violent part of the storm — returns
-                    shortly after. People who went outside during the eye of Yolanda were caught in the returning
-                    eyewall and suffered serious casualties.
-                  </p>
-                  <p class="myth-action">
-                    <strong>What to do:</strong> Stay in your shelter until PAGASA officially declares the
-                    typhoon has passed. Never go outside during the eye.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Myth 5 -->
-            <div class="accordion-item myth-item">
-              <h3 class="accordion-header">
-                <button class="accordion-button myth-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#myth5"
-                  aria-expanded="false" aria-controls="myth5">
-                  <span class="myth-label" aria-label="Myth">MYTH</span>
-                  "Floods only affect people who live near rivers or the coast."
-                </button>
-              </h3>
-              <div id="myth5" class="accordion-collapse collapse" data-bs-parent="#mythsAccordion">
-                <div class="accordion-body myth-body">
-                  <div class="myth-fact-label">
-                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-                    The Fact
-                  </div>
-                  <p>
-                    Flash floods and urban flooding can occur anywhere — including inland cities far from rivers.
-                    Poor drainage, clogged waterways, and heavy rainfall cause rapid flooding in residential
-                    streets. Many casualties occur in areas not traditionally considered flood zones.
-                  </p>
-                  <p class="myth-action">
-                    <strong>What to do:</strong> Know your barangay's flood history and have a vertical
-                    evacuation plan even if you live inland.
-                  </p>
-                </div>
-              </div>
-            </div>
+            @empty
+              <p class="text-muted text-center py-4">No typhoon myths available yet.</p>
+            @endforelse
 
           </div>
         </div>
@@ -453,11 +338,11 @@
               </p>
             </div>
             <div class="cta-banner-actions">
-              <a href="./pages/checklist.html" class="btn btn-primary btn-lg">
+              <a href="{{ route('checklist') }}" class="btn btn-primary btn-lg">
                 <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
                 Generate Your Plan
               </a>
-              <a href="./pages/go-bag.html" class="btn btn-outline-light btn-lg">
+              <a href="{{ route('go-bag') }}" class="btn btn-outline-light btn-lg">
                 <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
                 View Go-Bag Guide
               </a>
