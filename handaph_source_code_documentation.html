@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HandaPH: Typhoon Preparedness System</title>
+<style>
+    body {
+        font-family: "Times New Roman", Times, serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    .page-break {
+        page-break-before: always;
+    }
+    .cover-page {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .cover-title {
+        font-size: 42px;
+        font-weight: bold;
+        color: #000;
+    }
+    .content {
+        padding: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    h1, h2, h3, h4 {
+        color: #000;
+    }
+    h1 { font-size: 28px; border-bottom: 2px solid #000; padding-bottom: 5px; }
+    h2 { font-size: 20px; margin-top: 30px; }
+    h3 { font-size: 18px; margin-top: 25px; }
+    pre {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        padding: 15px;
+        overflow-x: auto;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 13px;
+        page-break-inside: avoid;
+    }
+    code {
+        font-family: "Courier New", Courier, monospace;
+        background-color: #f8f9fa;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    .toc {
+        list-style-type: none;
+        padding: 0;
+        font-size: 18px;
+    }
+    .toc li {
+        margin-bottom: 12px;
+    }
+    .toc a {
+        text-decoration: none;
+        color: #000;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        page-break-inside: avoid;
+    }
+    table, th, td {
+        border: 1px solid #999;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f1f1f1;
+    }
+</style>
+</head>
+<body>
+
+<!-- Cover Page -->
+<div class="cover-page">
+    <div class="cover-title">HandaPH: Typhoon Preparedness System</div>
+</div>
+<div class="page-break"></div>
+
+<!-- Table of Contents -->
+<div class="content">
+    <h1>Table of Contents</h1>
+    <ul class="toc">
+        <li>1. Introduction</li>
+        <li>2. System Architecture Overview</li>
+        <li>3. Project Folder Structure</li>
+        <li>4. Frontend Source Code</li>
+        <li>5. Backend Source Code</li>
+        <li>6. Database Structure</li>
+        <li>7. Admin Dashboard Modules</li>
+        <li>8. Myth-Busting Module</li>
+        <li>9. Analytics and Feedback Module</li>
+        <li>10. Security Features</li>
+        <li>11. Conclusion</li>
+    </ul>
+</div>
+<div class="page-break"></div>
+
+<!-- 1. Introduction -->
+<div class="content">
+    <h1>1. Introduction</h1>
+    <h2>Purpose of the System</h2>
+    <p>The HandaPH system is a personalized typhoon preparedness web application. It aims to assist Filipino families in building comprehensive Go-Bags and actionable emergency plans based on their specific needs, location, and household size.</p>
+    <h2>Overview</h2>
+    <p>By automating preparedness checklists and debunking dangerous typhoon myths, HandaPH bridges the gap between general advisories and actionable, personalized safety measures, aiming to reduce last-minute panic and save lives.</p>
+    <h2>Objectives</h2>
+    <ul>
+        <li>Provide customized typhoon survival checklists.</li>
+        <li>Educate the public on essential Go-Bag items and budget alternatives.</li>
+        <li>Debunk prevalent typhoon myths with verified facts.</li>
+        <li>Allow administrators to manage data, feedback, and view submission analytics.</li>
+    </ul>
+</div>
+<div class="page-break"></div>
+
+<!-- 2. System Architecture Overview -->
+<div class="content">
+    <h1>2. System Architecture Overview</h1>
+    <p>HandaPH is built on the Laravel (PHP 8.2+) framework, utilizing a robust Model-View-Controller (MVC) architecture. It uses Blade templating for the frontend views, Eloquent ORM for database interactions, and MySQL for data persistence.</p>
+    <ul>
+        <li><strong>Frontend:</strong> Blade Templates, HTML5, Vanilla CSS3, JavaScript.</li>
+        <li><strong>Backend:</strong> Laravel Framework (PHP), Controllers, Middleware, Form Requests.</li>
+        <li><strong>Database:</strong> MySQL relational database.</li>
+    </ul>
+</div>
+<div class="page-break"></div>
+
+<!-- 3. Project Folder Structure -->
+<div class="content">
+    <h1>3. Project Folder Structure</h1>
+    <pre>
+HandaPH/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/    (Application logic, Admin & Auth)
+│   │   └── Requests/       (Form validation rules)
+│   ├── Models/             (Eloquent ORM models)
+│   └── Services/           (Business logic like ChecklistRuleEngine)
+├── bootstrap/              (Framework bootstrap)
+├── config/                 (Application configuration)
+├── database/
+│   ├── migrations/         (Database schema definitions)
+│   └── seeders/            (Initial default dataset)
+├── public/                 (Publicly accessible assets, CSS, JS, Images)
+├── resources/
+│   └── views/              (Blade templates for Public and Admin UI)
+├── routes/
+│   ├── web.php             (Public routes)
+│   ├── admin.php           (Admin panel routes)
+│   └── auth.php            (Authentication routes)
+├── storage/                (Logs, compiled views, cached files)
+├── tests/                  (Unit and feature tests)
+├── .env                    (Environment config - secrets excluded)
+└── composer.json           (PHP dependencies)
+    </pre>
+</div>
+<div class="page-break"></div>
+
+<!-- 4. Frontend Source Code -->
+<div class="content">
+    <h1>4. Frontend Source Code</h1>
+    <p>The frontend utilizes Laravel Blade templating to render dynamic content efficiently. Below are key excerpts highlighting the structure and logic of the user interfaces.</p>
+
+    <h2>4.1 Login Page</h2>
+    <p><strong>File Path:</strong> <code>resources/views/auth/login.blade.php</code></p>
+    <p>This view presents the administrative login interface, handling error displays and secure POST submissions to the authentication route.</p>
+    <pre>
+&lt;!-- Excerpt of resources/views/auth/login.blade.php --&gt;
+&lt;form action=&quot;{{ route('login') }}&quot; method=&quot;POST&quot;&gt;
+  @csrf
+  &lt;div class=&quot;mb-3&quot;&gt;
+    &lt;label for=&quot;email&quot; class=&quot;form-label fw-semibold small text-muted&quot;&gt;Email address&lt;/label&gt;
+    &lt;input type=&quot;email&quot; class=&quot;form-control @error('email') is-invalid @enderror&quot;
+           id=&quot;email&quot; name=&quot;email&quot; value=&quot;{{ old('email') }}&quot;
+           placeholder=&quot;admin@handaph.local&quot; required autofocus&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;mb-4&quot;&gt;
+    &lt;label for=&quot;password&quot; class=&quot;form-label fw-semibold small text-muted&quot;&gt;Password&lt;/label&gt;
+    &lt;input type=&quot;password&quot; class=&quot;form-control @error('password') is-invalid @enderror&quot;
+           id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;********&quot; required&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;d-grid gap-2 mb-3&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary fw-bold py-2&quot;&gt;Sign In&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+    </pre>
+
+    <h2>4.2 Dashboard UI</h2>
+    <p><strong>File Path:</strong> <code>resources/views/admin/dashboard.blade.php</code></p>
+    <p>The admin dashboard displays aggregate statistics and chart containers for data visualization of public interactions.</p>
+    <pre>
+&lt;!-- Excerpt of resources/views/admin/dashboard.blade.php --&gt;
+&lt;div class=&quot;stat-row&quot;&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;
+    &lt;div class=&quot;stat-value text-primary&quot;&gt;{{ number_format($totalQueries) }}&lt;/div&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;Total Queries&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;
+    &lt;div class=&quot;stat-value text-secondary&quot;&gt;{{ number_format($totalFeedback) }}&lt;/div&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;Feedback Received&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row g-4 mb-4&quot;&gt;
+  &lt;div class=&quot;col-12 col-lg-6&quot;&gt;
+    &lt;div class=&quot;chart-card&quot;&gt;
+      &lt;h3 class=&quot;chart-title&quot;&gt;Location Type Distribution&lt;/h3&gt;
+      &lt;canvas id=&quot;locationChart&quot; aria-label=&quot;Location Distribution Chart&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </pre>
+
+    <h2>4.3 Go-Bag Interface</h2>
+    <p><strong>File Path:</strong> <code>resources/views/go-bag.blade.php</code></p>
+    <p>This public view dynamically renders Go-Bag items grouped by category (Essentials, Recommended, Optional).</p>
+    <pre>
+&lt;!-- Excerpt of resources/views/go-bag.blade.php --&gt;
+&lt;div class=&quot;tab-content&quot; id=&quot;gobagPillsContent&quot;&gt;
+  @forelse($categories as $categoryName =&gt; $items)
+    &lt;div class=&quot;tab-pane fade {{ $loop-&gt;first ? 'show active' : '' }}&quot; 
+      id=&quot;pills-{{ Str::slug($categoryName) }}&quot; role=&quot;tabpanel&quot;&gt;
+      &lt;div class=&quot;row g-3&quot;&gt;
+        @foreach($items as $item)
+          &lt;div class=&quot;col-12 col-md-6 col-lg-4&quot;&gt;
+            &lt;div class=&quot;gobag-item-card h-100 d-flex flex-column&quot;&gt;
+              &lt;div class=&quot;gobag-item-content flex-grow-1&quot;&gt;
+                &lt;h4 class=&quot;mb-2&quot;&gt;{{ $item-&gt;name }}&lt;/h4&gt;
+                &lt;p class=&quot;mb-0 text-muted&quot;&gt;{{ $item-&gt;description }}&lt;/p&gt;
+              &lt;/div&gt;
+              @if($item-&gt;budget_alternative)
+                &lt;div class=&quot;mt-3 pt-3 border-top small&quot;&gt;
+                  &lt;span class=&quot;text-success fw-bold&quot;&gt;Budget Alt:&lt;/span&gt;
+                  &lt;span class=&quot;text-muted&quot;&gt;{{ $item-&gt;budget_alternative }}&lt;/span&gt;
+                &lt;/div&gt;
+              @endif
+            &lt;/div&gt;
+          &lt;/div&gt;
+        @endforeach
+      &lt;/div&gt;
+    &lt;/div&gt;
+  @empty
+    &lt;p&gt;No items found.&lt;/p&gt;
+  @endforelse
+&lt;/div&gt;
+    </pre>
+
+    <h2>4.4 Checklist Generator Interface</h2>
+    <p><strong>File Path:</strong> <code>resources/views/checklist.blade.php</code></p>
+    <p>Renders personalized results categorized by phase (Before, During, After).</p>
+    <pre>
+&lt;!-- Excerpt of resources/views/checklist.blade.php --&gt;
+&lt;div class=&quot;tab-content checklist-tab-content&quot;&gt;
+  @foreach (['before', 'during', 'after'] as $phase)
+    &lt;div class=&quot;tab-pane fade {{ $phase === 'before' ? 'show active' : '' }}&quot; id=&quot;panel-{{ $phase }}&quot;&gt;
+      &lt;ul class=&quot;checklist-items-list&quot;&gt;
+        @forelse ($results[$phase] as $rule)
+          &lt;li class=&quot;checklist-item&quot;&gt;
+            &lt;span class=&quot;checklist-item-check&quot;&gt;&lt;i class=&quot;fa-solid fa-check&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span class=&quot;checklist-item-text&quot;&gt;{{ $rule-&gt;item_text }}&lt;/span&gt;
+            &lt;span class=&quot;checklist-item-tag {{ $rule-&gt;tag_class }}&quot;&gt;{{ $rule-&gt;tag }}&lt;/span&gt;
+          &lt;/li&gt;
+        @empty
+          &lt;li class=&quot;checklist-empty&quot;&gt;
+            &lt;p&gt;No specific items for this phase based on your selections.&lt;/p&gt;
+          &lt;/li&gt;
+        @endforelse
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  @endforeach
+&lt;/div&gt;
+    </pre>
+</div>
+<div class="page-break"></div>
+
+<!-- 5. Backend Source Code -->
+<div class="content">
+    <h1>5. Backend Source Code</h1>
+
+    <h2>5.1 Authentication Logic</h2>
+    <p><strong>File Path:</strong> <code>app/Http/Controllers/Auth/AuthenticatedSessionController.php</code></p>
+    <p>Manages login and logout processing.</p>
+    <pre>
+&lt;?php
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+
+class AuthenticatedSessionController extends Controller
+{
+    public function store(LoginRequest $request): RedirectResponse
+    {
+        $request-&gt;authenticate();
+        $request-&gt;session()-&gt;regenerate();
+
+        return redirect()-&gt;intended(route('admin.dashboard', absolute: false));
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::guard('web')-&gt;logout();
+        $request-&gt;session()-&gt;invalidate();
+        $request-&gt;session()-&gt;regenerateToken();
+
+        return redirect('/');
+    }
+}
+    </pre>
+
+    <h2>5.2 API & Web Routes</h2>
+    <p><strong>File Path:</strong> <code>routes/web.php</code></p>
+    <p>Maps public URLs to controller actions.</p>
+    <pre>
+&lt;?php
+use App\Http\Controllers\ChecklistController;
+use App\Http\Controllers\FeedbackController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    $myths = \App\Models\TyphoonMyth::where('is_active', true)-&gt;get();
+    return view('home', compact('myths'));
+})-&gt;name('home');
+
+Route::get('/go-bag', function () {
+    $categories = \App\Models\GoBagItem::where('is_active', true)
+        -&gt;get()
+        -&gt;groupBy('category');
+    return view('go-bag', compact('categories'));
+})-&gt;name('go-bag');
+
+Route::get('/checklist', [ChecklistController::class, 'index'])-&gt;name('checklist');
+Route::post('/checklist/generate', [ChecklistController::class, 'generate'])-&gt;name('checklist.generate');
+
+require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
+    </pre>
+
+    <h2>5.3 Business Logic: Checklist Rule Engine</h2>
+    <p><strong>File Path:</strong> <code>app/Services/ChecklistRuleEngine.php</code></p>
+    <p>Filters rules based on the user's survey submission parameters using Laravel Collections.</p>
+    <pre>
+&lt;?php
+namespace App\Services;
+
+use App\Models\ChecklistRule;
+
+class ChecklistRuleEngine
+{
+    public function filter(array $selections): array
+    {
+        $rules = ChecklistRule::where('is_active', true)-&gt;get();
+
+        $matched = $rules-&gt;filter(function ($rule) use ($selections) {
+            return $this-&gt;matches($rule, $selections);
+        });
+
+        return [
+            'before' =&gt; $matched-&gt;where('phase', 'before')-&gt;values(),
+            'during' =&gt; $matched-&gt;where('phase', 'during')-&gt;values(),
+            'after'  =&gt; $matched-&gt;where('phase', 'after')-&gt;values(),
+        ];
+    }
+
+    private function matches(ChecklistRule $rule, array $selections): bool
+    {
+        $locMatch  = empty($rule-&gt;locations) || in_array($selections['location'], $rule-&gt;locations, true);
+        $sizeMatch = empty($rule-&gt;sizes) || in_array($selections['household_size'], $rule-&gt;sizes, true);
+        $needsMatch = empty($rule-&gt;special_needs) || count(array_intersect($rule-&gt;special_needs, $selections['special_needs'])) &gt; 0;
+        $houseMatch = empty($rule-&gt;house_types) || in_array($selections['house_type'], $rule-&gt;house_types, true);
+
+        return $locMatch &amp;&amp; $sizeMatch &amp;&amp; $needsMatch &amp;&amp; $houseMatch;
+    }
+}
+    </pre>
+</div>
+<div class="page-break"></div>
+
+<!-- 6. Database Structure -->
+<div class="content">
+    <h1>6. Database Structure</h1>
+    <p>The system relies on a relational database design managed through Laravel migrations.</p>
+
+    <h2>6.1 Users Table</h2>
+    <p>Stores administrator credentials securely using hashed passwords.</p>
+    <pre>
+Schema::create('users', function (Blueprint $table) {
+    $table-&gt;id();
+    $table-&gt;string('name');
+    $table-&gt;string('email')-&gt;unique();
+    $table-&gt;timestamp('email_verified_at')-&gt;nullable();
+    $table-&gt;string('password'); // e.g., DB_PASSWORD=********
+    $table-&gt;rememberToken();
+    $table-&gt;timestamps();
+});
+    </pre>
+
+    <h2>6.2 Go-Bag Items Table</h2>
+    <p>Stores recommended emergency items.</p>
+    <pre>
+Schema::create('go_bag_items', function (Blueprint $table) {
+    $table-&gt;id();
+    $table-&gt;enum('category', ['essentials', 'recommended', 'optional']);
+    $table-&gt;string('name');
+    $table-&gt;text('description')-&gt;nullable();
+    $table-&gt;text('budget_alternative')-&gt;nullable();
+    $table-&gt;boolean('is_active')-&gt;default(true);
+    $table-&gt;timestamps();
+});
+    </pre>
+
+    <h2>6.3 Checklist Rules Table</h2>
+    <p>Stores logic for checklist generation. Uses JSON columns for flexibility in matching parameters.</p>
+    <pre>
+Schema::create('checklist_rules', function (Blueprint $table) {
+    $table-&gt;id();
+    $table-&gt;text('item_text');
+    $table-&gt;enum('phase', ['before', 'during', 'after']);
+    $table-&gt;string('tag');
+    $table-&gt;string('tag_class');
+    $table-&gt;json('locations');
+    $table-&gt;json('sizes');
+    $table-&gt;json('special_needs');
+    $table-&gt;json('house_types');
+    $table-&gt;boolean('is_active')-&gt;default(true);
+    $table-&gt;timestamps();
+});
+    </pre>
+
+    <h2>6.4 Survey Submissions Table</h2>
+    <p>Stores anonymous responses to generate analytics.</p>
+    <pre>
+Schema::create('survey_submissions', function (Blueprint $table) {
+    $table-&gt;id();
+    $table-&gt;enum('location', ['coastal', 'mountainous', 'inland', 'flood-prone']);
+    $table-&gt;enum('household_size', ['1', '2-4', '5-7', '8-plus']);
+    $table-&gt;json('special_needs');
+    $table-&gt;enum('house_type', ['light', 'semi-concrete', 'concrete']);
+    $table-&gt;timestamps();
+});
+    </pre>
+</div>
+<div class="page-break"></div>
+
+<!-- 7. Admin Dashboard Modules -->
+<div class="content">
+    <h1>7. Admin Dashboard Modules</h1>
+    <p>The system features an Admin Dashboard where Go-Bag items, Checklist Rules, Typhoon Myths, and user Feedback can be managed.</p>
+    
+    <h2>7.1 Go-Bag Item Controller (CRUD Example)</h2>
+    <p><strong>File Path:</strong> <code>app/Http/Controllers/Admin/GoBagItemController.php</code></p>
+    <pre>
+&lt;?php
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\GoBagItem;
+use Illuminate\Http\RedirectResponse;
+
+class GoBagItemController extends Controller
+{
+    public function store(StoreGoBagItemRequest $request): RedirectResponse
+    {
+        GoBagItem::create($request-&gt;validated());
+        return back()-&gt;with('success', 'Go-Bag item created successfully.');
+    }
+
+    public function update(UpdateGoBagItemRequest $request, GoBagItem $goBagItem): RedirectResponse
+    {
+        $goBagItem-&gt;update($request-&gt;validated());
+        return back()-&gt;with('success', 'Go-Bag item updated successfully.');
+    }
+
+    public function destroy(GoBagItem $goBagItem): RedirectResponse
+    {
+        $goBagItem-&gt;delete();
+        return back()-&gt;with('success', 'Go-Bag item deleted successfully.');
+    }
+}
+    </pre>
+</div>
+<div class="page-break"></div>
+
+<!-- 8. Myth-Busting Module -->
+<div class="content">
+    <h1>8. Myth-Busting Module</h1>
+    <p>The application debunks dangerous misconceptions surrounding typhoons.</p>
+
+    <h2>8.1 Typhoon Myth Model</h2>
+    <p><strong>File Path:</strong> <code>app/Models/TyphoonMyth.php</code></p>
+    <pre>
+&lt;?php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class TyphoonMyth extends Model
+{
+    protected $fillable = [
+        'myth',
+        'fact',
+        'action',
+        'is_active',
+    ];
+}
+    </pre>
+
+    <h2>8.2 Seeder Example</h2>
+    <p><strong>File Path:</strong> <code>database/seeders/TyphoonMythsSeeder.php</code></p>
+    <pre>
+[
+    'myth'   =&gt; '&quot;The eye of the typhoon means the storm is over — it is safe to go outside.&quot;',
+    'fact'   =&gt; 'The eye is a temporary calm. The most dangerous eyewall returns immediately...',
+    'action' =&gt; 'Stay indoors and away from windows until PAGASA officially declares...',
+    'is_active' =&gt; true,
+]
+    </pre>
+</div>
+<div class="page-break"></div>
+
+<!-- 9. Analytics and Feedback Module -->
+<div class="content">
+    <h1>9. Analytics and Feedback Module</h1>
+    <p>The platform collects anonymous survey data and feedback to help authorities understand demographics.</p>
+    
+    <h2>9.1 Analytics Controller</h2>
+    <p><strong>File Path:</strong> <code>app/Http/Controllers/Admin/AnalyticsController.php</code></p>
+    <pre>
+&lt;?php
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\SurveySubmission;
+use Illuminate\Http\JsonResponse;
+
+class AnalyticsController extends Controller
+{
+    public function summary(): JsonResponse
+    {
+        return response()-&gt;json([
+            'location' =&gt; $this-&gt;locationDistribution(),
+            'household_size' =&gt; $this-&gt;householdSizeDistribution(),
+            'special_needs' =&gt; $this-&gt;specialNeedsDistribution(),
+            'house_type' =&gt; $this-&gt;houseTypeDistribution(),
+        ]);
+    }
+
+    private function locationDistribution(): array
+    {
+        $rows = SurveySubmission::selectRaw('location, COUNT(*) as count')
+            -&gt;groupBy('location')
+            -&gt;pluck('count', 'location')
+            -&gt;toArray();
+
+        return [
+            'coastal'     =&gt; $rows['coastal']     ?? 0,
+            'mountainous' =&gt; $rows['mountainous'] ?? 0,
+            'inland'      =&gt; $rows['inland']      ?? 0,
+            'flood-prone' =&gt; $rows['flood-prone'] ?? 0,
+        ];
+    }
+}
+    </pre>
+</div>
+<div class="page-break"></div>
+
+<!-- 10. Security Features -->
+<div class="content">
+    <h1>10. Security Features</h1>
+    <ul>
+        <li><strong>Cross-Site Request Forgery (CSRF) Protection:</strong> All state-changing forms include Laravel's <code>@csrf</code> directive.</li>
+        <li><strong>Password Hashing:</strong> User passwords are encrypted using bcrypt (<code>Hash::make</code>).</li>
+        <li><strong>Environment Configuration:</strong> Sensitive variables are kept out of source code using the <code>.env</code> file. Ex: <code>DB_PASSWORD=********</code>, <code>APP_KEY=********</code>.</li>
+        <li><strong>Input Validation:</strong> Form Requests are used to validate and sanitize all user input before processing.</li>
+        <li><strong>Rate Limiting:</strong> Endpoints like login and feedback submission use <code>throttle</code> middleware to prevent brute-force or spam.</li>
+    </ul>
+</div>
+<div class="page-break"></div>
+
+<!-- 11. Conclusion -->
+<div class="content">
+    <h1>11. Conclusion</h1>
+    <p>The <strong>HandaPH: Typhoon Preparedness System</strong> exhibits a robust and scalable architecture built on Laravel. By combining dynamic checklist logic, essential survival information, and actionable data collection, it presents a substantial original creation eligible for copyright registration.</p>
+</div>
+
+</body>
+</html>

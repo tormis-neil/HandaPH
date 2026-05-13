@@ -9,86 +9,211 @@ class ChecklistRulesSeeder extends Seeder
 {
     public function run(): void
     {
-        $rules = [
-            // BEFORE — Universal
-            ['item_text' => 'Store at least 3 liters of water per person per day for a minimum of 3 days', 'phase' => 'before', 'tag' => 'Water', 'tag_class' => 'tag-water', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Prepare a 3-day supply of non-perishable food (canned goods, instant noodles, biscuits)', 'phase' => 'before', 'tag' => 'Food', 'tag_class' => 'tag-food', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Assemble a basic first aid kit (bandages, antiseptic, pain relievers, gauze)', 'phase' => 'before', 'tag' => 'Medical', 'tag_class' => 'tag-medical', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Make waterproof copies of important documents (IDs, birth certificates, land titles, insurance)', 'phase' => 'before', 'tag' => 'Documents', 'tag_class' => 'tag-documents', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Prepare a working flashlight and extra batteries', 'phase' => 'before', 'tag' => 'Tools', 'tag_class' => 'tag-tools', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Keep a battery-powered or hand-crank radio to receive PAGASA and NDRRMC updates', 'phase' => 'before', 'tag' => 'Tools', 'tag_class' => 'tag-tools', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Pack at least 3 days of clothing, including rain gear and sturdy closed footwear', 'phase' => 'before', 'tag' => 'Shelter', 'tag_class' => 'tag-shelter', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Fully charge all mobile phones and power banks before the typhoon arrives', 'phase' => 'before', 'tag' => 'Tools', 'tag_class' => 'tag-tools', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Set aside emergency cash in small denominations inside a waterproof container', 'phase' => 'before', 'tag' => 'Documents', 'tag_class' => 'tag-documents', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Identify your nearest evacuation center and plan your evacuation route in advance', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Secure or bring inside loose outdoor items (furniture, flowerpots, signs) that can become flying debris', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Assign a family meeting point and designate an out-of-area contact person', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
+        ChecklistRule::truncate();
 
-            // BEFORE — Location-specific
-            ['item_text' => 'Prepare sandbags to block doorways and low-lying openings against rising floodwater', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['flood-prone', 'coastal'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Know your storm surge risk zone — if in Zone 1 to 4, be ready to evacuate immediately when ordered', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['coastal'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Monitor river water levels and identify elevated ground or vertical evacuation points near your home', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['flood-prone'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Watch for landslide warning signs: ground cracks, unusual sounds, and tilting trees near slopes', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['mountainous'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Check and clear drainage canals and gutters around your property to reduce urban flooding risk', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['inland'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
+        $u = []; // universal (match all)
+        $rules = [];
 
-            // BEFORE — House type-specific
-            ['item_text' => 'Reinforce walls and roof with extra tie-down wires or rope before the typhoon arrives', 'phase' => 'before', 'tag' => 'Shelter', 'tag_class' => 'tag-shelter', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => ['light']],
-            ['item_text' => 'Identify the strongest interior room in your house (away from windows) as your shelter spot', 'phase' => 'before', 'tag' => 'Shelter', 'tag_class' => 'tag-shelter', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => ['light', 'semi-concrete']],
-            ['item_text' => 'Plan to evacuate early — light-material homes face high risk of structural failure in strong typhoons', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => ['light']],
-            ['item_text' => 'Reinforce windows and glass doors with masking tape or wooden boards to reduce shattering risk', 'phase' => 'before', 'tag' => 'Shelter', 'tag_class' => 'tag-shelter', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => ['semi-concrete', 'concrete']],
-
-            // BEFORE — Household size-specific
-            ['item_text' => 'Calculate your total water and food needs: 3 liters per person per day, multiplied by 3 days minimum', 'phase' => 'before', 'tag' => 'Water', 'tag_class' => 'tag-water', 'locations' => [], 'sizes' => ['5-7', '8-plus'], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Coordinate evacuation transport for your large household — contact your barangay for vehicle assistance if needed', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => ['8-plus'], 'special_needs' => [], 'house_types' => []],
-
-            // BEFORE — Special needs
-            ['item_text' => 'Prepare infant formula, diapers, baby wipes, and baby medicines for at least 3 days', 'phase' => 'before', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['children'], 'house_types' => []],
-            ['item_text' => 'Pack small entertainment items for children (toys, coloring books) to reduce stress during shelter-in-place', 'phase' => 'before', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['children'], 'house_types' => []],
-            ['item_text' => 'Prepare a written list of medications and dosages for senior family members with at least 7 days of supply', 'phase' => 'before', 'tag' => 'Medical', 'tag_class' => 'tag-medical', 'locations' => [], 'sizes' => [], 'special_needs' => ['seniors'], 'house_types' => []],
-            ['item_text' => 'Set up a buddy system — assign a household member to assist the senior during evacuation', 'phase' => 'before', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['seniors'], 'house_types' => []],
-            ['item_text' => 'Ensure mobility aids (wheelchair, walker, crutches) are accessible and included in the Go-Bag area', 'phase' => 'before', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['pwd'], 'house_types' => []],
-            ['item_text' => 'Inform your barangay DRRM office about PWD household members to receive priority evacuation assistance', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => ['pwd'], 'house_types' => []],
-            ['item_text' => 'Prepare a pet carrier or crate, leash, pet food, water bowl, and vaccination records', 'phase' => 'before', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['pets'], 'house_types' => []],
-            ['item_text' => 'Locate pet-friendly evacuation centers in your area — most public centers do not allow animals', 'phase' => 'before', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => ['pets'], 'house_types' => []],
-
-            // DURING — Universal
-            ['item_text' => 'Stay indoors and move away from windows, glass doors, and exterior walls', 'phase' => 'during', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Monitor PAGASA bulletins and LGU announcements continuously on your battery-powered radio', 'phase' => 'during', 'tag' => 'Tools', 'tag_class' => 'tag-tools', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Do NOT go outside during the eye of the typhoon — the most dangerous eyewall returns shortly after', 'phase' => 'during', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Use your flashlight instead of candles or open flames to eliminate fire risk', 'phase' => 'during', 'tag' => 'Tools', 'tag_class' => 'tag-tools', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Unplug all appliances and turn off the main circuit breaker if floodwater begins to enter', 'phase' => 'during', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Keep all windows and doors tightly shut and sealed throughout the entire storm', 'phase' => 'during', 'tag' => 'Shelter', 'tag_class' => 'tag-shelter', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Send text messages instead of calls to conserve battery power and reduce network congestion', 'phase' => 'during', 'tag' => 'Tools', 'tag_class' => 'tag-tools', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-
-            // DURING — Location/house/needs-specific
-            ['item_text' => 'Move to the highest floor or rooftop immediately if floodwater rises rapidly — do not wait', 'phase' => 'during', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['flood-prone', 'coastal'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Never attempt to cross flooded roads or rivers — fast-moving water can sweep away an adult', 'phase' => 'during', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['flood-prone', 'coastal', 'inland'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Evacuate immediately upon hearing rumbling sounds, cracking, or unusual noises near slopes', 'phase' => 'during', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['mountainous'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Evacuate immediately if your home shows structural stress — do not shelter in a light-material house during a strong typhoon', 'phase' => 'during', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => ['light']],
-            ['item_text' => 'Keep children calm with simple, reassuring explanations of what is happening around them', 'phase' => 'during', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['children'], 'house_types' => []],
-            ['item_text' => 'Ensure senior family members take medications on schedule and monitor their condition throughout', 'phase' => 'during', 'tag' => 'Medical', 'tag_class' => 'tag-medical', 'locations' => [], 'sizes' => [], 'special_needs' => ['seniors'], 'house_types' => []],
-            ['item_text' => 'Keep PWD family members close and ensure immediate access to mobility aids at all times', 'phase' => 'during', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['pwd'], 'house_types' => []],
-            ['item_text' => 'Keep pets confined in their carrier or a secure interior room — frightened animals can become aggressive', 'phase' => 'during', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['pets'], 'house_types' => []],
-
-            // AFTER — Universal
-            ['item_text' => 'Wait for the official all-clear from PAGASA and your LGU before going outside', 'phase' => 'after', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Do not drink tap water until authorities declare it safe — use your stored or bottled water', 'phase' => 'after', 'tag' => 'Water', 'tag_class' => 'tag-water', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Inspect your home for structural damage before re-entering — check walls, roof, and foundation', 'phase' => 'after', 'tag' => 'Shelter', 'tag_class' => 'tag-shelter', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Document all property damage with photos and video for insurance claims or government assistance', 'phase' => 'after', 'tag' => 'Documents', 'tag_class' => 'tag-documents', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Discard any food that came in contact with floodwater — it is unsafe to consume', 'phase' => 'after', 'tag' => 'Food', 'tag_class' => 'tag-food', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Assume all downed electrical wires are live — stay away and report to your electric cooperative', 'phase' => 'after', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Report injuries, missing persons, and road blockages to your barangay or NDRRMC hotline 911', 'phase' => 'after', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Sanitize all surfaces, containers, and utensils that may have been exposed to floodwater', 'phase' => 'after', 'tag' => 'Medical', 'tag_class' => 'tag-medical', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Replenish all Go-Bag supplies used during the typhoon: water, food, batteries, and medicines', 'phase' => 'after', 'tag' => 'Tools', 'tag_class' => 'tag-tools', 'locations' => [], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-
-            // AFTER — Location/needs-specific
-            ['item_text' => 'Do not return to flood-prone or coastal areas until water has fully receded and LGU declares it safe', 'phase' => 'after', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['flood-prone', 'coastal'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Watch for post-typhoon landslide warnings — rainfall during cleanup can trigger secondary landslides', 'phase' => 'after', 'tag' => 'Safety', 'tag_class' => 'tag-safety', 'locations' => ['mountainous'], 'sizes' => [], 'special_needs' => [], 'house_types' => []],
-            ['item_text' => 'Watch for signs of typhoon trauma or emotional distress in children — seek psychosocial support if needed', 'phase' => 'after', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['children'], 'house_types' => []],
-            ['item_text' => 'Monitor senior family members for post-typhoon illness, dehydration, or emotional stress', 'phase' => 'after', 'tag' => 'Medical', 'tag_class' => 'tag-medical', 'locations' => [], 'sizes' => [], 'special_needs' => ['seniors'], 'house_types' => []],
-            ['item_text' => 'Coordinate with barangay health workers or social workers for PWD recovery and rehabilitation support', 'phase' => 'after', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['pwd'], 'house_types' => []],
-            ['item_text' => 'Check pets for injuries, dehydration, or stress after the typhoon — visit a vet if needed', 'phase' => 'after', 'tag' => 'Special', 'tag_class' => 'tag-special', 'locations' => [], 'sizes' => [], 'special_needs' => ['pets'], 'house_types' => []],
+        // ── BEFORE: Universal (everyone gets these) ─────────────────────────
+        $before_universal = [
+            ['Store 3 liters of drinking water per person per day for at least 3 days.', 'Water', 'tag-water'],
+            ['Prepare a 3-day supply of non-perishable food (canned goods, biscuits, instant noodles).', 'Food', 'tag-food'],
+            ['Assemble a basic first aid kit: bandages, antiseptic, pain relievers, gauze.', 'Medical', 'tag-medical'],
+            ['Make waterproof copies of IDs, birth certificates, land titles, and insurance papers.', 'Documents', 'tag-documents'],
+            ['Prepare a working flashlight with extra batteries.', 'Tools', 'tag-tools'],
+            ['Keep a battery-powered or hand-crank radio for PAGASA and NDRRMC updates.', 'Tools', 'tag-tools'],
+            ['Fully charge all mobile phones and power banks before the typhoon arrives.', 'Tools', 'tag-tools'],
+            ['Set aside emergency cash in small denominations in a waterproof container.', 'Documents', 'tag-documents'],
+            ['Know your nearest evacuation center and plan your route in advance.', 'Safety', 'tag-safety'],
+            ['Assign a family meeting point and designate an out-of-area contact person.', 'Safety', 'tag-safety'],
+            ['Secure or bring indoors all loose outdoor items (furniture, signs, pots).', 'Safety', 'tag-safety'],
+            ['Pack at least 3 days of clothing including rain gear and sturdy closed footwear.', 'Shelter', 'tag-shelter'],
         ];
+        foreach ($before_universal as [$text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'before','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[],'special_needs'=>[],'house_types'=>[],'is_active'=>true];
+        }
+
+        // BEFORE: Location-specific
+        $before_location = [
+            ['coastal'    , 'Prepare sandbags to block doorways and low openings against rising seawater.', 'Safety', 'tag-safety'],
+            ['coastal'    , 'Know your storm surge risk zone (Zone 1–4) and be ready to evacuate immediately.', 'Safety', 'tag-safety'],
+            ['coastal'    , 'Store valuables and documents on the highest floor to protect from storm surge.', 'Documents', 'tag-documents'],
+            ['coastal'    , 'Identify a vertical evacuation point (multi-story building) in case roads are flooded.', 'Safety', 'tag-safety'],
+            ['flood-prone', 'Prepare sandbags to block doorways and low-lying openings against rising floodwater.', 'Safety', 'tag-safety'],
+            ['flood-prone', 'Monitor river and creek water levels and identify elevated ground nearby.', 'Safety', 'tag-safety'],
+            ['flood-prone', 'Elevate appliances, furniture, and valuables off the floor before the typhoon.', 'Shelter', 'tag-shelter'],
+            ['flood-prone', 'Know your barangay\'s flood alarm system and the signal levels that trigger evacuation.', 'Safety', 'tag-safety'],
+            ['mountainous', 'Watch for early landslide signs: ground cracks, tilting trees, unusual sounds.', 'Safety', 'tag-safety'],
+            ['mountainous', 'Identify evacuation routes that avoid slope areas and river channels.', 'Safety', 'tag-safety'],
+            ['mountainous', 'Report ground movement or cracks to your barangay DRRM officer immediately.', 'Safety', 'tag-safety'],
+            ['mountainous', 'Prepare a rapid-evacuation bag you can grab in under 2 minutes.', 'Safety', 'tag-safety'],
+            ['inland'     , 'Clear drainage canals and gutters around your property to reduce urban flooding.', 'Safety', 'tag-safety'],
+            ['inland'     , 'Know the locations of low-lying streets in your area that flood first.', 'Safety', 'tag-safety'],
+            ['inland'     , 'Check nearby infrastructure (bridges, drainage) condition before the typhoon.', 'Safety', 'tag-safety'],
+        ];
+        foreach ($before_location as [$loc, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'before','tag'=>$tag,'tag_class'=>$cls,'locations'=>[$loc],'sizes'=>[],'special_needs'=>[],'house_types'=>[],'is_active'=>true];
+        }
+
+        // BEFORE: House-type-specific
+        $before_house = [
+            ['light'        , 'Reinforce walls and roof with extra tie-down wires or rope before the typhoon.', 'Shelter', 'tag-shelter'],
+            ['light'        , 'Plan early evacuation — light-material homes have high structural failure risk in strong typhoons.', 'Safety', 'tag-safety'],
+            ['light'        , 'Identify the strongest interior room (away from windows) as your shelter spot.', 'Shelter', 'tag-shelter'],
+            ['light'        , 'Inform your barangay captain you live in a light-material house so priority evacuation can be arranged.', 'Safety', 'tag-safety'],
+            ['semi-concrete', 'Reinforce windows and glass doors with masking tape or wooden boards to reduce shattering.', 'Shelter', 'tag-shelter'],
+            ['semi-concrete', 'Identify the strongest interior room away from windows as your safe spot during the storm.', 'Shelter', 'tag-shelter'],
+            ['semi-concrete', 'Check and reinforce any wood-framed sections (roof trusses, door frames) that may weaken.', 'Shelter', 'tag-shelter'],
+            ['concrete'     , 'Reinforce windows and glass doors with masking tape or plywood boards.', 'Shelter', 'tag-shelter'],
+            ['concrete'     , 'Inspect your roof for loose sheets or weakened bolts and secure them before the typhoon.', 'Shelter', 'tag-shelter'],
+            ['concrete'     , 'Even in a concrete home, stay in an interior room away from windows during the storm.', 'Shelter', 'tag-shelter'],
+        ];
+        foreach ($before_house as [$house, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'before','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[],'special_needs'=>[],'house_types'=>[$house],'is_active'=>true];
+        }
+
+        // BEFORE: Size-specific
+        $before_size = [
+            ['5-7'   , 'Calculate total water needs: 3 liters × number of people × 3 days minimum.', 'Water', 'tag-water'],
+            ['5-7'   , 'Assign specific roles to each household member (water carrier, document keeper, first-aid person).', 'Safety', 'tag-safety'],
+            ['8-plus', 'Calculate total water needs: 3 liters × number of people × 3 days minimum.', 'Water', 'tag-water'],
+            ['8-plus', 'Contact your barangay for vehicle assistance for large-household evacuation if needed.', 'Safety', 'tag-safety'],
+            ['8-plus', 'Create a written household evacuation plan with assigned roles for every adult member.', 'Safety', 'tag-safety'],
+        ];
+        foreach ($before_size as [$size, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'before','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[$size],'special_needs'=>[],'house_types'=>[],'is_active'=>true];
+        }
+
+        // BEFORE: Special-needs-specific
+        $before_needs = [
+            ['children', 'Prepare infant formula, diapers, baby wipes, and children\'s medicines for at least 3 days.', 'Special', 'tag-special'],
+            ['children', 'Pack small toys, coloring books, or comfort items to reduce children\'s stress during the typhoon.', 'Special', 'tag-special'],
+            ['children', 'Teach children the family meeting point, the contact person\'s number, and what to do if separated.', 'Safety', 'tag-safety'],
+            ['seniors' , 'Prepare a written medication list with dosages and pack at least 7 days of supply.', 'Medical', 'tag-medical'],
+            ['seniors' , 'Set up a buddy system: assign a household member to assist the senior during evacuation.', 'Special', 'tag-special'],
+            ['seniors' , 'Pre-register your senior family member with the barangay health center for priority assistance.', 'Safety', 'tag-safety'],
+            ['pwd'     , 'Ensure mobility aids (wheelchair, walker, crutches) are accessible and packed in the Go-Bag area.', 'Special', 'tag-special'],
+            ['pwd'     , 'Inform your barangay DRRM office about PWD household members for priority evacuation.', 'Safety', 'tag-safety'],
+            ['pwd'     , 'Prepare written communication cards if the PWD member has a speech or hearing impairment.', 'Special', 'tag-special'],
+            ['pets'    , 'Prepare a pet carrier or crate, leash, pet food, water bowl, and vaccination records.', 'Special', 'tag-special'],
+            ['pets'    , 'Locate pet-friendly evacuation centers in your area — most public centers do not allow animals.', 'Safety', 'tag-safety'],
+            ['pets'    , 'Microchip or tag your pet with your contact number in case you are separated during evacuation.', 'Special', 'tag-special'],
+        ];
+        foreach ($before_needs as [$need, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'before','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[],'special_needs'=>[$need],'house_types'=>[],'is_active'=>true];
+        }
+
+        // ── DURING: Universal ────────────────────────────────────────────────
+        $during_universal = [
+            ['Stay indoors and move away from all windows, glass doors, and exterior walls.', 'Safety', 'tag-safety'],
+            ['Monitor PAGASA bulletins continuously on your battery-powered radio.', 'Tools', 'tag-tools'],
+            ['Do NOT go outside during the eye of the typhoon — the eyewall returns shortly after.', 'Safety', 'tag-safety'],
+            ['Use flashlights instead of candles or open flames to eliminate fire risk.', 'Tools', 'tag-tools'],
+            ['Unplug all appliances and turn off the main circuit breaker if floodwater begins to enter.', 'Safety', 'tag-safety'],
+            ['Keep all windows and doors tightly shut and sealed throughout the entire storm.', 'Shelter', 'tag-shelter'],
+            ['Send text messages instead of calls to conserve battery and reduce network congestion.', 'Tools', 'tag-tools'],
+        ];
+        foreach ($during_universal as [$text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'during','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[],'special_needs'=>[],'house_types'=>[],'is_active'=>true];
+        }
+
+        // DURING: Location-specific
+        $during_location = [
+            ['coastal'    , 'If storm surge warnings are active, evacuate to a multi-story building immediately — do not wait.', 'Safety', 'tag-safety'],
+            ['coastal'    , 'Never return to the coast during or after the storm until authorities confirm the surge has receded.', 'Safety', 'tag-safety'],
+            ['flood-prone', 'Move to the highest floor or rooftop immediately if floodwater rises rapidly — do not wait.', 'Safety', 'tag-safety'],
+            ['flood-prone', 'Never attempt to cross flooded roads or rivers — fast-moving water can sweep away an adult.', 'Safety', 'tag-safety'],
+            ['mountainous', 'Evacuate immediately upon hearing rumbling sounds, cracking, or unusual noises near slopes.', 'Safety', 'tag-safety'],
+            ['mountainous', 'Stay away from rivers, streams, and drainage channels that can flash-flood without warning.', 'Safety', 'tag-safety'],
+            ['inland'     , 'Never attempt to cross flooded streets even if the water looks shallow.', 'Safety', 'tag-safety'],
+            ['inland'     , 'Watch for sudden rises in water level in drainage canals near your home.', 'Safety', 'tag-safety'],
+        ];
+        foreach ($during_location as [$loc, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'during','tag'=>$tag,'tag_class'=>$cls,'locations'=>[$loc],'sizes'=>[],'special_needs'=>[],'house_types'=>[],'is_active'=>true];
+        }
+
+        // DURING: House-type-specific
+        $during_house = [
+            ['light'        , 'Evacuate immediately if your home shows structural stress — do not shelter in a light-material house during a strong typhoon.', 'Safety', 'tag-safety'],
+            ['light'        , 'If evacuation is not possible, shelter under a heavy table away from walls and windows.', 'Shelter', 'tag-shelter'],
+            ['semi-concrete', 'Shelter in the most interior room of your home away from windows and wood-framed sections.', 'Shelter', 'tag-shelter'],
+            ['concrete'     , 'Stay in an interior room; even concrete homes can have windows shattered by debris.', 'Shelter', 'tag-shelter'],
+        ];
+        foreach ($during_house as [$house, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'during','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[],'special_needs'=>[],'house_types'=>[$house],'is_active'=>true];
+        }
+
+        // DURING: Special-needs-specific
+        $during_needs = [
+            ['children', 'Keep children calm with simple, honest explanations of what is happening around them.', 'Special', 'tag-special'],
+            ['children', 'Ensure children are kept away from windows and exterior walls throughout the storm.', 'Safety', 'tag-safety'],
+            ['seniors' , 'Ensure senior family members take medications on schedule and monitor their condition.', 'Medical', 'tag-medical'],
+            ['seniors' , 'Keep seniors warm, hydrated, and seated safely away from windows and doors.', 'Special', 'tag-special'],
+            ['pwd'     , 'Keep PWD family members close and ensure immediate access to mobility aids at all times.', 'Special', 'tag-special'],
+            ['pwd'     , 'If power is lost, have a manual backup for any electrically-powered medical equipment.', 'Medical', 'tag-medical'],
+            ['pets'    , 'Keep pets confined in their carrier or a secure interior room — frightened animals can become aggressive.', 'Special', 'tag-special'],
+            ['pets'    , 'Ensure pets have enough water and food inside their carrier for the duration of the storm.', 'Special', 'tag-special'],
+        ];
+        foreach ($during_needs as [$need, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'during','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[],'special_needs'=>[$need],'house_types'=>[],'is_active'=>true];
+        }
+
+        // ── AFTER: Universal ─────────────────────────────────────────────────
+        $after_universal = [
+            ['Wait for the official all-clear from PAGASA and your LGU before going outside.', 'Safety', 'tag-safety'],
+            ['Do not drink tap water until authorities declare it safe — use stored or bottled water.', 'Water', 'tag-water'],
+            ['Inspect your home for structural damage before re-entering.', 'Shelter', 'tag-shelter'],
+            ['Document all property damage with photos and video for insurance and assistance claims.', 'Documents', 'tag-documents'],
+            ['Discard any food that came in contact with floodwater — it is unsafe to consume.', 'Food', 'tag-food'],
+            ['Assume all downed electrical wires are live — stay away and report to your electric cooperative.', 'Safety', 'tag-safety'],
+            ['Report injuries, missing persons, and road blockages to your barangay or NDRRMC hotline 911.', 'Safety', 'tag-safety'],
+            ['Sanitize all surfaces, containers, and utensils that may have been exposed to floodwater.', 'Medical', 'tag-medical'],
+            ['Replenish all Go-Bag supplies used: water, food, batteries, and medicines.', 'Tools', 'tag-tools'],
+        ];
+        foreach ($after_universal as [$text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'after','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[],'special_needs'=>[],'house_types'=>[],'is_active'=>true];
+        }
+
+        // AFTER: Location-specific
+        $after_location = [
+            ['coastal'    , 'Do not return to coastal areas until water has fully receded and LGU declares it safe.', 'Safety', 'tag-safety'],
+            ['coastal'    , 'Check your boat, fishing equipment, and waterfront property only after the all-clear.', 'Safety', 'tag-safety'],
+            ['flood-prone', 'Do not return to flood-prone areas until water has fully receded and LGU declares it safe.', 'Safety', 'tag-safety'],
+            ['flood-prone', 'Pump out floodwater from your home and disinfect all affected surfaces with bleach solution.', 'Medical', 'tag-medical'],
+            ['mountainous', 'Watch for post-typhoon landslide warnings — rain during cleanup can trigger secondary slides.', 'Safety', 'tag-safety'],
+            ['mountainous', 'Do not use damaged roads near slopes until engineers or authorities have inspected them.', 'Safety', 'tag-safety'],
+            ['inland'     , 'Check drainage canals near your property for debris blockages that could cause future flooding.', 'Safety', 'tag-safety'],
+            ['inland'     , 'Report damaged road infrastructure and clogged drainage to your local engineering office.', 'Safety', 'tag-safety'],
+        ];
+        foreach ($after_location as [$loc, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'after','tag'=>$tag,'tag_class'=>$cls,'locations'=>[$loc],'sizes'=>[],'special_needs'=>[],'house_types'=>[],'is_active'=>true];
+        }
+
+        // AFTER: House-type-specific
+        $after_house = [
+            ['light'        , 'Do not re-enter a light-material home until a neighbor or barangay official confirms it is structurally safe.', 'Shelter', 'tag-shelter'],
+            ['light'        , 'Begin temporary repairs (patching roof, replacing damaged walls) only after the storm fully passes.', 'Shelter', 'tag-shelter'],
+            ['semi-concrete', 'Inspect all wood-framed sections, roof trusses, and door frames for damage before re-entering.', 'Shelter', 'tag-shelter'],
+            ['concrete'     , 'Inspect roof for displaced sheets and check for cracks in walls or foundation before re-entering.', 'Shelter', 'tag-shelter'],
+        ];
+        foreach ($after_house as [$house, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'after','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[],'special_needs'=>[],'house_types'=>[$house],'is_active'=>true];
+        }
+
+        // AFTER: Special-needs-specific
+        $after_needs = [
+            ['children', 'Watch for signs of typhoon trauma in children: nightmares, withdrawal, or unusual fear.', 'Special', 'tag-special'],
+            ['children', 'Seek psychosocial support from barangay health workers if children show distress signs.', 'Medical', 'tag-medical'],
+            ['seniors' , 'Monitor seniors for post-typhoon illness, dehydration, or emotional distress.', 'Medical', 'tag-medical'],
+            ['seniors' , 'Schedule a follow-up with a doctor if a senior missed medications during the typhoon.', 'Medical', 'tag-medical'],
+            ['pwd'     , 'Coordinate with barangay social workers for PWD recovery assistance and rehabilitation support.', 'Special', 'tag-special'],
+            ['pwd'     , 'Replace or repair any damaged mobility aids or medical equipment as a priority.', 'Medical', 'tag-medical'],
+            ['pets'    , 'Check pets for injuries, dehydration, or stress after the typhoon — visit a vet if needed.', 'Special', 'tag-special'],
+            ['pets'    , 'Reunite lost pets using your barangay or local Facebook community group.', 'Special', 'tag-special'],
+        ];
+        foreach ($after_needs as [$need, $text, $tag, $cls]) {
+            $rules[] = ['item_text'=>$text,'phase'=>'after','tag'=>$tag,'tag_class'=>$cls,'locations'=>[],'sizes'=>[],'special_needs'=>[$need],'house_types'=>[],'is_active'=>true];
+        }
 
         foreach ($rules as $rule) {
             ChecklistRule::create($rule);

@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
             ['email' => 'admin@handaph.local'],
             [
                 'name' => 'HandaPH Admin',
-                'password' => Hash::make('changeme123'),
+                'password' => Hash::make('admin1234'),
                 'email_verified_at' => now(),
             ]
         );

@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminSeeder::class,
+            TyphoonMythsSeeder::class,
             ChecklistRulesSeeder::class,
             PreparednessTipsSeeder::class,
             GoBagItemsSeeder::class,
