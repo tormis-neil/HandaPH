@@ -214,7 +214,9 @@ class ChecklistRulesSeeder extends Seeder
         }
 
         foreach ($rules as $rule) {
-            ChecklistRule::firstOrCreate($rule);
+            if (!ChecklistRule::where('item_text', $rule['item_text'])->exists()) {
+                ChecklistRule::create($rule);
+            }
         }
     }
 }
