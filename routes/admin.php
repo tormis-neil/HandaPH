@@ -25,6 +25,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/feedback', [FeedbackController::class, 'index'])
         ->name('feedback');
+        
+    Route::get('/feedback/export', [FeedbackController::class, 'exportPdf'])
+        ->name('feedback.export');
 
     Route::resource('checklist-rules', ChecklistRuleController::class)
         ->except(['create', 'show', 'edit'])

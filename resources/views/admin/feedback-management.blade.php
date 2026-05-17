@@ -5,117 +5,108 @@
 
 @section('content')
 
-<div class="admin-page-header">
+<div class="admin-page-header d-flex justify-content-between align-items-center mb-4">
   <div>
-    <h1>User Feedback Logs</h1>
-    <p class="page-subtext">Review submitted platform survey ratings and comments.</p>
+    <h1>System Evaluation Logs</h1>
+    <p class="page-subtext mb-0">Review submitted ISO/IEC 25010 Quality Model evaluations.</p>
+  </div>
+  <div>
+    <a href="{{ route('admin.feedback.export') }}" target="_blank" class="btn btn-outline-primary shadow-sm">
+      <i class="fa-solid fa-file-pdf me-2"></i>Export to PDF
+    </a>
   </div>
 </div>
 
-<div class="stat-row">
-  <div class="stat-card">
-    <div class="stat-value text-primary">{{ $stats['avgRating'] }}</div>
-    <div class="stat-label">Average Star Rating</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-value text-secondary">{{ number_format($stats['total']) }}</div>
-    <div class="stat-label">Total Submissions</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-value text-success">{{ $stats['veryEasyPercent'] }}%</div>
-    <div class="stat-label">Reported 'Very Easy'</div>
-  </div>
-</div>
-
-<div class="card p-3 mb-4 shadow-sm border-0">
-  <form action="{{ route('admin.feedback') }}" method="GET" class="row gy-2 gx-3 align-items-center">
-    <div class="col-sm-3">
-      <label class="visually-hidden" for="filterRating">Rating Filter</label>
-      <select class="form-select" id="filterRating" name="rating">
-        <option value="all" {{ request('rating') == 'all' || !request('rating') ? 'selected' : '' }}>All Ratings</option>
-        <option value="5" {{ request('rating') == '5' ? 'selected' : '' }}>5 Stars</option>
-        <option value="4" {{ request('rating') == '4' ? 'selected' : '' }}>4 Stars</option>
-        <option value="3" {{ request('rating') == '3' ? 'selected' : '' }}>3 Stars</option>
-        <option value="2" {{ request('rating') == '2' ? 'selected' : '' }}>2 Stars</option>
-        <option value="1" {{ request('rating') == '1' ? 'selected' : '' }}>1 Star</option>
-      </select>
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom pt-4 pb-3">
+                <h5 class="fw-bold text-primary mb-0"><i class="fa-solid fa-chart-pie me-2"></i>Average Metric Scores (Out of 5)</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center gy-4">
+                    <div class="col-sm-4 col-md-2">
+                        <div class="fs-3 fw-bold text-primary">{{ $stats['effectiveness'] }}</div>
+                        <div class="text-muted small fw-bold text-uppercase" title="Effectiveness">Effect.</div>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <div class="fs-3 fw-bold text-info">{{ $stats['efficiency'] }}</div>
+                        <div class="text-muted small fw-bold text-uppercase" title="Efficiency">Effic.</div>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <div class="fs-3 fw-bold text-success">{{ number_format(($stats['satisfaction_usefulness'] + $stats['satisfaction_trust'] + $stats['satisfaction_pleasure'] + $stats['satisfaction_comfort']) / 4, 1) }}</div>
+                        <div class="text-muted small fw-bold text-uppercase" title="Satisfaction (Average of 4 metrics)">Satis.</div>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <div class="fs-3 fw-bold text-warning">{{ number_format(($stats['risk_economic'] + $stats['risk_health_safety'] + $stats['risk_environmental']) / 3, 1) }}</div>
+                        <div class="text-muted small fw-bold text-uppercase" title="Freedom from risk (Average of 3 metrics)">Risk F.</div>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <div class="fs-3 fw-bold text-danger">{{ $stats['context_coverage'] }}</div>
+                        <div class="text-muted small fw-bold text-uppercase" title="Context Coverage">Context</div>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <div class="fs-3 fw-bold text-secondary">{{ $stats['flexibility'] }}</div>
+                        <div class="text-muted small fw-bold text-uppercase" title="Flexibility">Flex.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-sm-3">
-      <label class="visually-hidden" for="filterRegion">Region Filter</label>
-      <select class="form-select" id="filterRegion" name="region">
-        <option value="all" {{ request('region') == 'all' || !request('region') ? 'selected' : '' }}>All Regions</option>
-        <option value="NCR" {{ request('region') == 'NCR' ? 'selected' : '' }}>NCR</option>
-        <option value="Region III" {{ request('region') == 'Region III' ? 'selected' : '' }}>Region III</option>
-        <!-- The live system captures full strings, these are common defaults -->
-      </select>
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary d-flex align-items-center gap-2">
-        <i class="fa-solid fa-filter" aria-hidden="true"></i> Apply Filters
-      </button>
-      @if(request()->has('rating') || request()->has('region'))
-        <a href="{{ route('admin.feedback') }}" class="btn btn-light ms-2">Clear</a>
-      @endif
-    </div>
-  </form>
 </div>
 
 <div class="admin-table-wrapper mb-5">
-  <table class="table admin-table" aria-label="User Feedback Submissions">
-    <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Rating</th>
-        <th scope="col">Understandability</th>
-        <th scope="col">Helpfulness</th>
-        <th scope="col">Location</th>
-      </tr>
-    </thead>
-    <tbody>
-      @forelse($feedbacks as $fb)
+  <div class="table-responsive">
+    <table class="table admin-table align-middle" aria-label="User Feedback Submissions" style="font-size: 0.85rem;">
+      <thead class="text-center">
         <tr>
-          <td>{{ $fb->created_at->format('M d, Y g:i A') }}</td>
-          <td>
-            @for($i=1; $i<=5; $i++)
-              <i class="fa-solid fa-star {{ $i <= $fb->rating ? 'text-warning' : 'text-muted' }}"></i>
-            @endfor
-          </td>
-          <td>
-            @if($fb->easy_to_understand == 'yes_very_easy')
-              <span class="badge bg-success">Very Easy</span>
-            @elseif($fb->easy_to_understand == 'somewhat')
-              <span class="badge bg-warning text-dark">Somewhat</span>
-            @elseif($fb->easy_to_understand == 'confusing')
-              <span class="badge bg-danger">Confusing</span>
-            @else
-              <span class="text-muted">-</span>
-            @endif
-          </td>
-          <td>
-            @if($fb->helpful_prepare == 'yes_very_helpful')
-              <span class="badge bg-success">Very Helpful</span>
-            @elseif($fb->helpful_prepare == 'somewhat_helpful')
-              <span class="badge bg-warning text-dark">Somewhat</span>
-            @elseif($fb->helpful_prepare == 'no_not_really')
-              <span class="badge bg-danger">Not Really</span>
-            @else
-              <span class="text-muted">-</span>
-            @endif
-          </td>
-          <td>{{ $fb->region ?: '-' }}</td>
+          <th scope="col" rowspan="2" class="align-middle text-start">Date</th>
+          <th scope="col" rowspan="2" class="align-middle" title="Effectiveness">Effec.</th>
+          <th scope="col" rowspan="2" class="align-middle" title="Efficiency">Effic.</th>
+          <th scope="col" colspan="4" class="border-bottom-0 pb-0">Satisfaction</th>
+          <th scope="col" colspan="3" class="border-bottom-0 pb-0">Risk Freedom</th>
+          <th scope="col" rowspan="2" class="align-middle" title="Context Coverage">Cont.</th>
+          <th scope="col" rowspan="2" class="align-middle" title="Flexibility">Flex.</th>
         </tr>
-      @empty
         <tr>
-          <td colspan="5">
-            <div class="table-empty-state py-4">
-              <i class="fa-solid fa-inbox text-muted fs-3 border-0"></i>
-              <p class="mb-0 mt-2 fw-medium">No Feedback Submissions Yet</p>
-            </div>
-          </td>
+          <th scope="col" title="Usefulness" class="fw-normal text-muted border-top-0 pt-0">Use</th>
+          <th scope="col" title="Trust" class="fw-normal text-muted border-top-0 pt-0">Tru</th>
+          <th scope="col" title="Pleasure" class="fw-normal text-muted border-top-0 pt-0">Ple</th>
+          <th scope="col" title="Comfort" class="fw-normal text-muted border-top-0 pt-0">Com</th>
+          <th scope="col" title="Economic" class="fw-normal text-muted border-top-0 pt-0">Eco</th>
+          <th scope="col" title="Health/Safety" class="fw-normal text-muted border-top-0 pt-0">Hea</th>
+          <th scope="col" title="Environmental" class="fw-normal text-muted border-top-0 pt-0">Env</th>
         </tr>
-      @endforelse
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="text-center">
+        @forelse($feedbacks as $fb)
+          <tr>
+            <td class="text-start" style="white-space: nowrap;">{{ $fb->created_at->format('M d, Y g:i A') }}</td>
+            <td><span class="badge bg-primary">{{ $fb->effectiveness }}</span></td>
+            <td><span class="badge bg-info">{{ $fb->efficiency }}</span></td>
+            <td><span class="badge bg-success">{{ $fb->satisfaction_usefulness }}</span></td>
+            <td><span class="badge bg-success">{{ $fb->satisfaction_trust }}</span></td>
+            <td><span class="badge bg-success">{{ $fb->satisfaction_pleasure }}</span></td>
+            <td><span class="badge bg-success">{{ $fb->satisfaction_comfort }}</span></td>
+            <td><span class="badge bg-warning text-dark">{{ $fb->risk_economic }}</span></td>
+            <td><span class="badge bg-warning text-dark">{{ $fb->risk_health_safety }}</span></td>
+            <td><span class="badge bg-warning text-dark">{{ $fb->risk_environmental }}</span></td>
+            <td><span class="badge bg-danger">{{ $fb->context_coverage }}</span></td>
+            <td><span class="badge bg-secondary">{{ $fb->flexibility }}</span></td>
+          </tr>
+        @empty
+          <tr>
+            <td colspan="12" class="text-center">
+              <div class="table-empty-state py-4">
+                <i class="fa-solid fa-inbox text-muted fs-3 border-0"></i>
+                <p class="mb-0 mt-2 fw-medium">No Evaluation Submissions Yet</p>
+              </div>
+            </td>
+          </tr>
+        @endforelse
+      </tbody>
+    </table>
+  </div>
   
   @if($feedbacks->hasPages())
     <div class="mt-4">
@@ -124,29 +115,27 @@
   @endif
 </div>
 
-<h2 class="h5 text-primary fw-bold mb-3 border-bottom pb-2">Written Suggestions</h2>
+<h2 class="h5 text-primary fw-bold mb-3 border-bottom pb-2">Written Comments/Suggestions</h2>
 <div class="admin-table-wrapper">
   <table class="table admin-table" aria-label="Written Feedback Comments">
     <thead>
       <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Region</th>
+        <th scope="col" style="width: 15%">Date</th>
         <th scope="col">Improvement Suggestion</th>
       </tr>
     </thead>
     <tbody>
       @php
-        $comments = $feedbacks->filter(fn($f) => !empty($f->improve_comments));
+        $commentsList = $feedbacks->filter(fn($f) => !empty($f->comments));
       @endphp
-      @forelse($comments as $fb)
+      @forelse($commentsList as $fb)
         <tr>
           <td style="white-space: nowrap;">{{ $fb->created_at->format('M d, Y') }}</td>
-          <td>{{ $fb->region ?: '-' }}</td>
-          <td>{{ $fb->improve_comments }}</td>
+          <td>{{ $fb->comments }}</td>
         </tr>
       @empty
         <tr>
-          <td colspan="3">
+          <td colspan="2">
             <div class="table-empty-state py-4">
               <i class="fa-regular fa-comment-dots text-muted fs-3 border-0"></i>
               <p class="mb-0 mt-2 fw-medium">No Comments Found</p>

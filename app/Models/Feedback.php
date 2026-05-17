@@ -9,10 +9,17 @@ class Feedback extends Model
     protected $table = 'feedbacks';
 
     protected $fillable = [
-        'rating',
-        'easy_to_understand',
-        'helpful_prepare',
-        'improve_comments',
-        'region',
+        'effectiveness',
+        'efficiency',
+        'satisfaction_usefulness',
+        'satisfaction_trust',
+        'satisfaction_pleasure',
+        'satisfaction_comfort',
+        'risk_economic',
+        'risk_health_safety',
+        'risk_environmental',
+        'context_coverage',
+        'flexibility',
+        'comments',
     ];
 }

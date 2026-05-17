@@ -8,11 +8,18 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('rating');
-            $table->enum('easy_to_understand', ['yes_very_easy', 'somewhat', 'confusing'])->nullable();
-            $table->enum('helpful_prepare', ['yes_very_helpful', 'somewhat_helpful', 'no_not_really'])->nullable();
-            $table->text('improve_comments')->nullable();
-            $table->string('region')->nullable();
+            $table->unsignedTinyInteger('effectiveness');
+            $table->unsignedTinyInteger('efficiency');
+            $table->unsignedTinyInteger('satisfaction_usefulness');
+            $table->unsignedTinyInteger('satisfaction_trust');
+            $table->unsignedTinyInteger('satisfaction_pleasure');
+            $table->unsignedTinyInteger('satisfaction_comfort');
+            $table->unsignedTinyInteger('risk_economic');
+            $table->unsignedTinyInteger('risk_health_safety');
+            $table->unsignedTinyInteger('risk_environmental');
+            $table->unsignedTinyInteger('context_coverage');
+            $table->unsignedTinyInteger('flexibility');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }

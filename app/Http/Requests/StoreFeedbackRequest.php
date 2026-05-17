@@ -14,11 +14,18 @@ class StoreFeedbackRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rating' => ['required', 'integer', 'between:1,5'],
-            'easy_to_understand' => ['nullable', 'in:yes_very_easy,somewhat,confusing'],
-            'helpful_prepare' => ['nullable', 'in:yes_very_helpful,somewhat_helpful,no_not_really'],
-            'improve_comments' => ['nullable', 'string', 'max:2000'],
-            'region' => ['nullable', 'string', 'max:50'],
+            'effectiveness' => ['required', 'integer', 'between:1,5'],
+            'efficiency' => ['required', 'integer', 'between:1,5'],
+            'satisfaction_usefulness' => ['required', 'integer', 'between:1,5'],
+            'satisfaction_trust' => ['required', 'integer', 'between:1,5'],
+            'satisfaction_pleasure' => ['required', 'integer', 'between:1,5'],
+            'satisfaction_comfort' => ['required', 'integer', 'between:1,5'],
+            'risk_economic' => ['required', 'integer', 'between:1,5'],
+            'risk_health_safety' => ['required', 'integer', 'between:1,5'],
+            'risk_environmental' => ['required', 'integer', 'between:1,5'],
+            'context_coverage' => ['required', 'integer', 'between:1,5'],
+            'flexibility' => ['required', 'integer', 'between:1,5'],
+            'comments' => ['nullable', 'string', 'max:2000'],
         ];
     }
 }
