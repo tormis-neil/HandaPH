@@ -28,7 +28,7 @@ class PreparednessTipsSeeder extends Seeder
         ];
 
         foreach ($tips as $tip) {
-            PreparednessTip::create($tip);
+            PreparednessTip::firstOrCreate($tip);
         }
     }
 }

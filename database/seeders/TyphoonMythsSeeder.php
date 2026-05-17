@@ -73,7 +73,7 @@ class TyphoonMythsSeeder extends Seeder
         ];
 
         foreach ($myths as $myth) {
-            TyphoonMyth::create($myth);
+            TyphoonMyth::firstOrCreate($myth);
         }
     }
 }

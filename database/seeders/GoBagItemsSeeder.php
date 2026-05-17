@@ -31,7 +31,7 @@ class GoBagItemsSeeder extends Seeder
         ];
 
         foreach ($items as $item) {
-            GoBagItem::create($item);
+            GoBagItem::firstOrCreate($item);
         }
     }
 }

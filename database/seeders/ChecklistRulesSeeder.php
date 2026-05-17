@@ -9,8 +9,6 @@ class ChecklistRulesSeeder extends Seeder
 {
     public function run(): void
     {
-        ChecklistRule::truncate();
-
         $u = []; // universal (match all)
         $rules = [];
 
@@ -216,7 +214,7 @@ class ChecklistRulesSeeder extends Seeder
         }
 
         foreach ($rules as $rule) {
-            ChecklistRule::create($rule);
+            ChecklistRule::firstOrCreate($rule);
         }
     }
 }
