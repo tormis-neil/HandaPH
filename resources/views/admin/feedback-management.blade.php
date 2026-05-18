@@ -5,56 +5,138 @@
 
 @section('content')
 
-<div class="admin-page-header d-flex justify-content-between align-items-center mb-4">
+<div class="admin-page-header d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
   <div>
     <h1>System Evaluation Logs</h1>
-    <p class="page-subtext mb-0">Review submitted ISO/IEC 25010 Quality Model evaluations.</p>
+    <p class="page-subtext mb-0">ISO/IEC 25010 Quality Model Analytics.</p>
   </div>
-  <div>
-    <a href="{{ route('admin.feedback.export') }}" target="_blank" class="btn btn-outline-primary shadow-sm">
-      <i class="fa-solid fa-file-pdf me-2"></i>Export to PDF
-    </a>
-  </div>
+  
+  <form method="GET" action="{{ route('admin.feedback') }}" class="d-flex gap-2 align-items-center">
+      <input type="date" name="start_date" class="form-control form-control-sm" value="{{ request('start_date') }}" aria-label="Start Date">
+      <span class="text-muted small">to</span>
+      <input type="date" name="end_date" class="form-control form-control-sm" value="{{ request('end_date') }}" aria-label="End Date">
+      <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+      @if(request()->has('start_date'))
+        <a href="{{ route('admin.feedback') }}" class="btn btn-sm btn-outline-secondary">Clear</a>
+      @endif
+      <a href="{{ route('admin.feedback.export') }}?{{ http_build_query(request()->all()) }}" target="_blank" class="btn btn-sm btn-outline-danger shadow-sm ms-2">
+        <i class="fa-solid fa-file-pdf me-2"></i>PDF
+      </a>
+      <a href="{{ route('admin.feedback.export_excel') }}?{{ http_build_query(request()->all()) }}" class="btn btn-sm btn-outline-success shadow-sm ms-1">
+        <i class="fa-solid fa-file-excel me-2"></i>Excel
+      </a>
+  </form>
 </div>
 
-<div class="row mb-4">
-    <div class="col-12">
-        <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white border-bottom pt-4 pb-3">
-                <h5 class="fw-bold text-primary mb-0"><i class="fa-solid fa-chart-pie me-2"></i>Average Metric Scores (Out of 5)</h5>
-            </div>
+@if($analytics)
+<!-- Overall Summary Cards -->
+<div class="row mb-4 g-4">
+    <div class="col-md-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-                <div class="row text-center gy-4">
-                    <div class="col-sm-4 col-md-2">
-                        <div class="fs-3 fw-bold text-primary">{{ $stats['effectiveness'] }}</div>
-                        <div class="text-muted small fw-bold text-uppercase" title="Effectiveness">Effect.</div>
-                    </div>
-                    <div class="col-sm-4 col-md-2">
-                        <div class="fs-3 fw-bold text-info">{{ $stats['efficiency'] }}</div>
-                        <div class="text-muted small fw-bold text-uppercase" title="Efficiency">Effic.</div>
-                    </div>
-                    <div class="col-sm-4 col-md-2">
-                        <div class="fs-3 fw-bold text-success">{{ number_format(($stats['satisfaction_usefulness'] + $stats['satisfaction_trust'] + $stats['satisfaction_pleasure'] + $stats['satisfaction_comfort']) / 4, 1) }}</div>
-                        <div class="text-muted small fw-bold text-uppercase" title="Satisfaction (Average of 4 metrics)">Satis.</div>
-                    </div>
-                    <div class="col-sm-4 col-md-2">
-                        <div class="fs-3 fw-bold text-warning">{{ number_format(($stats['risk_economic'] + $stats['risk_health_safety'] + $stats['risk_environmental']) / 3, 1) }}</div>
-                        <div class="text-muted small fw-bold text-uppercase" title="Freedom from risk (Average of 3 metrics)">Risk F.</div>
-                    </div>
-                    <div class="col-sm-4 col-md-2">
-                        <div class="fs-3 fw-bold text-danger">{{ $stats['context_coverage'] }}</div>
-                        <div class="text-muted small fw-bold text-uppercase" title="Context Coverage">Context</div>
-                    </div>
-                    <div class="col-sm-4 col-md-2">
-                        <div class="fs-3 fw-bold text-secondary">{{ $stats['flexibility'] }}</div>
-                        <div class="text-muted small fw-bold text-uppercase" title="Flexibility">Flex.</div>
-                    </div>
+                <h6 class="text-muted fw-bold text-uppercase mb-2" style="font-size: 0.75rem;">Total Respondents</h6>
+                <h2 class="mb-0 fw-bold text-primary">{{ $analytics['total'] }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-9">
+        <div class="card border-0 shadow-sm h-100 bg-primary text-white">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="fw-bold text-uppercase mb-2 text-white-50" style="font-size: 0.75rem;">Overall System Mean</h6>
+                    <h2 class="mb-0 fw-bold">{{ $analytics['overall']['mean'] }} / 5.00</h2>
+                </div>
+                <div class="text-end">
+                    <h6 class="fw-bold text-uppercase mb-2 text-white-50" style="font-size: 0.75rem;">Interpretation</h6>
+                    <h3 class="mb-0 fw-bold text-warning">{{ $analytics['overall']['interpretation'] }}</h3>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Charts Row -->
+<div class="row mb-4 g-4">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-bottom pt-4 pb-3">
+                <h6 class="fw-bold text-primary mb-0"><i class="fa-solid fa-chart-bar me-2"></i>Category Averages</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="categoryChart" style="max-height: 250px;"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-bottom pt-4 pb-3">
+                <h6 class="fw-bold text-primary mb-0"><i class="fa-solid fa-list-check me-2"></i>Category Summary</h6>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover align-middle mb-0" style="font-size: 0.9rem;">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-3">Category</th>
+                            <th class="text-center">Mean</th>
+                            <th class="pe-3">Interpretation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($analytics['categories'] as $catName => $data)
+                        <tr>
+                            <td class="fw-medium ps-3">{{ $catName }}</td>
+                            <td class="text-center fw-bold">{{ $data['mean'] }}</td>
+                            <td class="pe-3"><span class="badge bg-secondary">{{ $data['interpretation'] }}</span></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tally Tables -->
+<div class="card border-0 shadow-sm mb-5">
+    <div class="card-header bg-white border-bottom pt-4 pb-3">
+        <h6 class="fw-bold text-primary mb-0"><i class="fa-solid fa-table me-2"></i>Detailed ISO/IEC 25010 Tally</h6>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle mb-0" style="font-size: 0.9rem;">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-3">Criteria</th>
+                        <th class="text-center">Respondents (N)</th>
+                        <th class="text-center">Total Score (&Sigma;)</th>
+                        <th class="text-center">Mean Average (x&#772;)</th>
+                        <th class="pe-3">Verbal Interpretation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($analytics['criteria'] as $criterion => $data)
+                    <tr>
+                        <td class="text-capitalize ps-3">{{ str_replace('_', ' ', $criterion) }}</td>
+                        <td class="text-center">{{ $analytics['total'] }}</td>
+                        <td class="text-center">{{ $data['sum'] }}</td>
+                        <td class="text-center fw-bold">{{ $data['mean'] }}</td>
+                        <td class="pe-3"><span class="badge bg-info text-dark">{{ $data['interpretation'] }}</span></td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@else
+<div class="alert alert-info border-0 shadow-sm mb-4">
+    <i class="fa-solid fa-circle-info me-2"></i>No evaluation data available for the selected period.
+</div>
+@endif
+
+
+<h2 class="h5 text-primary fw-bold mb-3 border-bottom pb-2">Raw Submissions</h2>
 <div class="admin-table-wrapper mb-5">
   <div class="table-responsive">
     <table class="table admin-table align-middle" aria-label="User Feedback Submissions" style="font-size: 0.85rem;">
@@ -116,7 +198,7 @@
 </div>
 
 <h2 class="h5 text-primary fw-bold mb-3 border-bottom pb-2">Written Comments/Suggestions</h2>
-<div class="admin-table-wrapper">
+<div class="admin-table-wrapper mb-5">
   <table class="table admin-table" aria-label="Written Feedback Comments">
     <thead>
       <tr>
@@ -146,5 +228,51 @@
     </tbody>
   </table>
 </div>
+
+@if($analytics)
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('categoryChart').getContext('2d');
+        
+        const labels = {!! json_encode(array_keys($analytics['categories'])) !!};
+        const data = {!! json_encode(array_map(function($cat) { return $cat['mean']; }, $analytics['categories'])) !!};
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Category Mean Score',
+                    data: data,
+                    backgroundColor: 'rgba(52, 144, 220, 0.7)',
+                    borderColor: 'rgba(52, 144, 220, 1)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 5,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    });
+</script>
+@endif
 
 @endsection
