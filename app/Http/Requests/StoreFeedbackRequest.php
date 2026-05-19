@@ -14,6 +14,8 @@ class StoreFeedbackRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'respondent_name' => ['required', 'string', 'max:255'],
+            'course_section' => ['required', 'string', 'max:255'],
             'effectiveness' => ['required', 'integer', 'between:1,5'],
             'efficiency' => ['required', 'integer', 'between:1,5'],
             'satisfaction_usefulness' => ['required', 'integer', 'between:1,5'],

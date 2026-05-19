@@ -89,6 +89,8 @@
     <thead>
         <tr>
             <th rowspan="2">Date</th>
+            <th rowspan="2">Respondent Name</th>
+            <th rowspan="2">Course & Section</th>
             <th rowspan="2">Effectiveness</th>
             <th rowspan="2">Efficiency</th>
             <th colspan="4">Satisfaction</th>
@@ -110,6 +112,8 @@
         @forelse($feedbacks as $fb)
             <tr>
                 <td>{{ $fb->created_at->format('M d, Y') }}</td>
+                <td>{{ $fb->respondent_name ?? 'Anonymous' }}</td>
+                <td>{{ $fb->course_section ?? 'N/A' }}</td>
                 <td>{{ $fb->effectiveness }}</td>
                 <td>{{ $fb->efficiency }}</td>
                 <td>{{ $fb->satisfaction_usefulness }}</td>
@@ -124,7 +128,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="12">No Submissions Found</td>
+                <td colspan="14">No Submissions Found</td>
             </tr>
         @endforelse
     </tbody>

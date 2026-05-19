@@ -143,6 +143,8 @@
       <thead class="text-center">
         <tr>
           <th scope="col" rowspan="2" class="align-middle text-start">Date</th>
+          <th scope="col" rowspan="2" class="align-middle text-start">Respondent Name</th>
+          <th scope="col" rowspan="2" class="align-middle text-start">Course & Section</th>
           <th scope="col" rowspan="2" class="align-middle" title="Effectiveness">Effec.</th>
           <th scope="col" rowspan="2" class="align-middle" title="Efficiency">Effic.</th>
           <th scope="col" colspan="4" class="border-bottom-0 pb-0">Satisfaction</th>
@@ -164,6 +166,8 @@
         @forelse($feedbacks as $fb)
           <tr>
             <td class="text-start" style="white-space: nowrap;">{{ $fb->created_at->format('M d, Y g:i A') }}</td>
+            <td class="text-start">{{ $fb->respondent_name ?? 'Anonymous' }}</td>
+            <td class="text-start">{{ $fb->course_section ?? 'N/A' }}</td>
             <td><span class="badge bg-primary">{{ $fb->effectiveness }}</span></td>
             <td><span class="badge bg-info">{{ $fb->efficiency }}</span></td>
             <td><span class="badge bg-success">{{ $fb->satisfaction_usefulness }}</span></td>
@@ -178,7 +182,7 @@
           </tr>
         @empty
           <tr>
-            <td colspan="12" class="text-center">
+            <td colspan="14" class="text-center">
               <div class="table-empty-state py-4">
                 <i class="fa-solid fa-inbox text-muted fs-3 border-0"></i>
                 <p class="mb-0 mt-2 fw-medium">No Evaluation Submissions Yet</p>
@@ -203,6 +207,8 @@
     <thead>
       <tr>
         <th scope="col" style="width: 15%">Date</th>
+        <th scope="col" style="width: 20%">Respondent Name</th>
+        <th scope="col" style="width: 20%">Course & Section</th>
         <th scope="col">Improvement Suggestion</th>
       </tr>
     </thead>
@@ -213,11 +219,13 @@
       @forelse($commentsList as $fb)
         <tr>
           <td style="white-space: nowrap;">{{ $fb->created_at->format('M d, Y') }}</td>
+          <td>{{ $fb->respondent_name ?? 'Anonymous' }}</td>
+          <td>{{ $fb->course_section ?? 'N/A' }}</td>
           <td>{{ $fb->comments }}</td>
         </tr>
       @empty
         <tr>
-          <td colspan="2">
+          <td colspan="4">
             <div class="table-empty-state py-4">
               <i class="fa-regular fa-comment-dots text-muted fs-3 border-0"></i>
               <p class="mb-0 mt-2 fw-medium">No Comments Found</p>

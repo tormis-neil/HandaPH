@@ -59,6 +59,26 @@
         <form action="{{ route('feedback.store') }}" method="POST" id="feedbackForm" novalidate>
           @csrf
 
+          <div class="mb-5">
+            <h5 class="fw-bold text-primary mb-3 pb-2 border-bottom">Respondent Information</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="respondent_name" class="form-label fw-bold">Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('respondent_name') is-invalid @enderror" id="respondent_name" name="respondent_name" value="{{ old('respondent_name') }}" required placeholder="Juan Dela Cruz">
+                @error('respondent_name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="col-md-6">
+                <label for="course_section" class="form-label fw-bold">Course & Section <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('course_section') is-invalid @enderror" id="course_section" name="course_section" value="{{ old('course_section') }}" required placeholder="e.g. BSIT 3-1">
+                @error('course_section')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+            </div>
+          </div>
+
           @php
           $categories = [
               'A. Effectiveness' => [
