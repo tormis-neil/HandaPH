@@ -7,4 +7,4 @@
 - [x] Update admin `feedback-management.blade.php` to show respondent info in tables.
 - [x] Update `feedback-export.blade.php` to include respondent info in PDF/Excel exports.
 - [x] Test locally with `php artisan migrate`.
-- [ ] Commit and push to trigger Render deployment.
+- [x] Commit and push to trigger Render deployment.
